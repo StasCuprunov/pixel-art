@@ -36,6 +36,7 @@ function generateGrid() {
 
 function resetGrid() {
     document.getElementById(FILL_ID).checked = false;
+    setDisableForPixelColor(false);
 
     // remove grid
     let gridContainer = document.getElementById(GRID_ID);
@@ -55,9 +56,7 @@ function changeTool() {
     else {
         isDisabled = false;
     }
-    $(document).ready(function(){
-        $("#" + PIXEL_COLOR_ID).prop("disabled", isDisabled);
-    });
+    setDisableForPixelColor(isDisabled);
 
     for (let index = 0; index < getIndexBorder(); index++) {
         let id = generatePixelId(index);
@@ -173,6 +172,12 @@ function whichRowIsIndex(index) {
 
 function whichColumnIsIndex(index) {
     return index % sizeOfGrid();
+}
+
+function setDisableForPixelColor(isDisabled) {
+    $(document).ready(function(){
+        $("#" + PIXEL_COLOR_ID).prop("disabled", isDisabled);
+    });
 }
 
 function generatePixelId(index) {
