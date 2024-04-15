@@ -1,5 +1,8 @@
 <!DOCTYPE html>
 <html>
+    <head>
+        <script type = "text/javascript" src="/js/pixel-art.js"></script>
+    </head>
     <body>
         <section>
             <h1>Pixel Art</h1>
@@ -11,10 +14,7 @@
                 <div>
                     <label for="gridSize">Welche quadratische Pixelgr&ouml;&szlig;e soll dein Bild haben?</label>
                     <select id="gridSize" name="gridSize">
-                        <option value="8">8 x 8</option>
-                        <option value="12">12 x 12</option>
-                        <option value="16">16 x 16</option>
-                        <option value="32">32 x 32</option>
+                        <script>generateGridSizeOptions();</script>
                     </select>
                 </div>
                 <div>
