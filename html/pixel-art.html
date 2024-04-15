@@ -13,7 +13,7 @@
                 <h2>Werkzeuge, um dein Bild zu erstellen</h2>
                 <div>
                     <label for="gridSize">Welche quadratische Pixelgr&ouml;&szlig;e soll dein Bild haben?</label>
-                    <select id="gridSize" name="gridSize">
+                    <select id="gridSize" name="gridSize" onchange="changeGrid()">
                         <script>generateGridSizeOptions();</script>
                     </select>
                 </div>
@@ -36,11 +36,8 @@
             </section>
             <section>
                 <h2>Dein Kunstwerk erstellen</h2>
-                <div>
-                    <input type="button" id="pixel-0" name="pixelArt" value="0"/>
-                    <input type="button" id="pixel-1" name="pixelArt" value="1"/>
-                    <input type="button" id="pixel-2" name="pixelArt" value="2"/>
-                    <input type="button" id="pixel-3" name="pixelArt" value="3"/>
+                <div id="grid">
+                    <script>generateGrid();</script>
                 </div>
                 <div>
                     <div>
