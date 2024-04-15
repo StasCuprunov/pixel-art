@@ -19,10 +19,13 @@ function generateGrid() {
     let gridContainer = document.getElementById("grid");
 
     for (let index = 0; index < indexBorder; index++) {
+        let id = "pixel-" + index;
+
         let input = document.createElement("input");
         input.setAttribute("type", "button");
-        input.setAttribute("id", "pixel-" + index);
+        input.setAttribute("id", id);
         input.setAttribute("name", "grid");
+        input.setAttribute("onClick", "colorPixel('" + id + "')");
         gridContainer.appendChild(input);
 
         let isLastColumn = (index % size) === lastColumn;
@@ -39,4 +42,11 @@ function changeGrid() {
     gridContainer.textContent = '';
 
     generateGrid();
+}
+
+function colorPixel(id) {
+    let color = document.getElementById("pixelColor").value;
+
+    let pixelButton = document.getElementById(id);
+    pixelButton.style.backgroundColor = color;
 }
