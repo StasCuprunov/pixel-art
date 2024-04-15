@@ -35,6 +35,8 @@ function generateGrid() {
 }
 
 function resetGrid() {
+    document.getElementById(FILL_ID).checked = false;
+
     // remove grid
     let gridContainer = document.getElementById(GRID_ID);
     gridContainer.textContent = '';
@@ -45,7 +47,7 @@ function resetGrid() {
 function changeTool() {
     let isDisabled;
     let onClickValue;
-    let isFillToolActive = document.getElementById("fill").checked;
+    let isFillToolActive = document.getElementById(FILL_ID).checked;
 
     if (isFillToolActive) {
         isDisabled = true;
