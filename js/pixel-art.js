@@ -36,7 +36,7 @@ function generateGrid() {
     }
 }
 
-function changeGrid() {
+function resetGrid() {
     // remove grid
     let gridContainer = document.getElementById("grid");
     gridContainer.textContent = '';

@@ -13,7 +13,7 @@
                 <h2>Werkzeuge, um dein Bild zu erstellen</h2>
                 <div>
                     <label for="gridSize">Welche quadratische Pixelgr&ouml;&szlig;e soll dein Bild haben?</label>
-                    <select id="gridSize" name="gridSize" onchange="changeGrid()">
+                    <select id="gridSize" name="gridSize" onchange="resetGrid()">
                         <script>generateGridSizeOptions();</script>
                     </select>
                 </div>
@@ -31,7 +31,7 @@
                 </div>
                 <div>
                     <label for="reset">Ich m&ouml;chte alle Pixel zur&uuml;cksetzen</label>
-                    <input type="button" id="reset" name="reset" value="Zur&uuml;cksetzen"/>
+                    <input type="button" id="reset" name="reset" value="Zur&uuml;cksetzen" onclick="resetGrid()"/>
                 </div>
             </section>
             <section>
