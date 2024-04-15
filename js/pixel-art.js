@@ -12,23 +12,21 @@ function generateGridSizeOptions() {
 }
 
 function generateGrid() {
-    let size = sizeOfGrid();
-    let lastColumn = size - 1;
-    let indexBorder = size * size;
+    let lastColumn = sizeOfGrid() - 1;
 
     let gridContainer = document.getElementById(GRID_ID);
 
-    for (let index = 0; index < indexBorder; index++) {
-        let id = generatePixelId(index)
+    for (let index = 0; index < getIndexBorder(); index++) {
+        let id = generatePixelId(index);
 
         let input = document.createElement("input");
         input.setAttribute("type", "button");
         input.setAttribute("id", id);
         input.setAttribute("name", GRID_ID);
-        input.setAttribute("onClick", "colorPixel('" + id + "')");
+        input.setAttribute("onclick",  onClickValueColorPixel(id))
         gridContainer.appendChild(input);
 
-        let isLastColumn = (index % size) === lastColumn;
+        let isLastColumn = whichColumnIsIndex(index) === lastColumn;
         if (isLastColumn) {
             let lineBreak = document.createElement("br");
             gridContainer.appendChild(lineBreak);
@@ -45,23 +43,30 @@ function resetGrid() {
 }
 
 function changeTool() {
-    let valueFromOnClick;
-    let prefixValueFromOnClick;
-    let suffixValueFromOnClick = "')";
+    let isDisabled;
+    let onClickValue;
     let isFillToolActive = document.getElementById("fill").checked;
 
     if (isFillToolActive) {
-        document.getElementById(PIXEL_COLOR_ID).disabled = true;
-        prefixValueFromOnClick = "fillAdjacentPixels('";
+        isDisabled = true;
     }
-    else{
-        document.getElementById(PIXEL_COLOR_ID).setAttribute("disabled", "");
-        prefixValueFromOnClick = "colorPixel('";
+    else {
+        isDisabled = false;
     }
+    $(document).ready(function(){
+        $("#" + PIXEL_COLOR_ID).prop("disabled", isDisabled);
+    });
+
     for (let index = 0; index < getIndexBorder(); index++) {
         let id = generatePixelId(index);
-        valueFromOnClick = prefixValueFromOnClick + id + suffixValueFromOnClick;
-        document.getElementById(id).onclick = valueFromOnClick;
+
+        if (isFillToolActive) {
+            onClickValue = onClickValueFillAdjacentPixels(id);
+        }
+        else {
+            onClickValue = onClickValueColorPixel(id);
+        }
+        document.getElementById(id).onclick = new Function(onClickValue);
     }
 }
 
@@ -73,12 +78,9 @@ function colorPixel(id) {
 }
 
 function fillAdjacentPixels(id) {
-    let fillColor = document.getElementById(id).getAttribute("background-color");
+    let fillColor = document.getElementById(id).style.backgroundColor;
 
-    let indexFillPixel = id.replace(PREFIX_PIXEL_ID, "");
-    if (!Number.isInteger(indexFillPixel)) {
-        return;
-    }
+    let indexFillPixel = Number(id.replace(PREFIX_PIXEL_ID, ""));
 
     const FIRST_ROW = 0;
     const LAST_ROW = sizeOfGrid() - 1;
@@ -119,11 +121,11 @@ function fillAdjacentPixels(id) {
 }
 
 function sizeOfGrid() {
-    return document.getElementById(GRID_SIZE_ID).value;
+    return Number(document.getElementById(GRID_SIZE_ID).value);
 }
 
 function changeColorFromPixel(index, color) {
-    document.getElementById(generatePixelId(index)).backgroundColor = color;
+    document.getElementById(generatePixelId(index)).style.backgroundColor = color;
 }
 
 function indexTopFromPixel(index) {
@@ -159,8 +161,8 @@ function indexBottomLeftFromPixel(index) {
 }
 
 function getIndexBorder() {
-    let sizeOfGrid = sizeOfGrid();
-    return sizeOfGrid * sizeOfGrid;
+    let size = sizeOfGrid();
+    return size * size;
 }
 
 function whichRowIsIndex(index) {
@@ -173,4 +175,12 @@ function whichColumnIsIndex(index) {
 
 function generatePixelId(index) {
     return PREFIX_PIXEL_ID + index;
+}
+
+function onClickValueColorPixel(id) {
+    return "colorPixel('" + id + "')";
+}
+
+function onClickValueFillAdjacentPixels(id) {
+    return "fillAdjacentPixels('" + id + "')";
 }
