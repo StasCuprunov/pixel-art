@@ -29,16 +29,21 @@
                                     <script>generateGridSizeOptions();</script>
                                 </select>
                             </div>
-                            <div class="tools">
-                                <div>
-                                    <label for="pixelColor">Mit welcher Farbe m&ouml;chtest du f&auml;rben?</label>
-                                    <input type="color" id="pixelColor" name="pixelColor" value="#ff0000">
-                                </div>
-                                <div>
-                                    <label for="fill">
-                                        M&ouml;chtest du deine benachbarten Pixel mit den angeklickten Pixel im Bild f&auml;rben?
-                                    </label>
-                                    <input type="checkbox" id="fill" name="fill" onchange="changeTool()"/>
+                            <div class="container container-tools">
+                                <div class="row">
+                                    <div class="tools">
+                                        <div class="col-6 pixelColor">
+                                            <label for="pixelColor">Mit welcher Farbe m&ouml;chtest du f&auml;rben?</label>
+                                            <input type="color" id="pixelColor" name="pixelColor" value="#ff0000">
+                                        </div>
+                                        <div class="col-6 fill">
+                                            <label for="fill">
+                                                M&ouml;chtest du deine benachbarten Pixel mit
+                                                den angeklickten Pixel im Bild f&auml;rben?
+                                            </label>
+                                            <input type="checkbox" id="fill" name="fill" onchange="changeTool()"/>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div>
