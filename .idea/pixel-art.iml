@@ -11,5 +11,6 @@
     <orderEntry type="library" name="jquery" level="application" />
     <orderEntry type="library" name="FileSaver.js" level="application" />
     <orderEntry type="library" name="html2canvas" level="application" />
+    <orderEntry type="library" name="bootstrap" level="application" />
   </component>
 </module>
