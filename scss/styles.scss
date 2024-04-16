@@ -44,6 +44,24 @@ $default-border: 1px solid #000000;
 
 .grid {
   display: inline-block;
+
+  br {
+    display: block;
+    content: "";
+    margin-top: -10px;
+  }
+}
+
+.pixel {
+  background-color: $default-pixel-color;
+  border-top: $default-border;
+  border-left: $default-border;
+  border-bottom: $default-border;
+  border-right: 0;
+}
+
+.pixel.last-column {
+  border-right: $default-border;
 }
 
 .download {

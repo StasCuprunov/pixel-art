@@ -18,15 +18,23 @@ function generateGrid() {
 
     for (let index = 0; index < getIndexBorder(); index++) {
         let id = generatePixelId(index);
+        let isLastColumn = whichColumnIsIndex(index) === lastColumn;
 
         let input = document.createElement("input");
         input.setAttribute("type", "button");
         input.setAttribute("id", id);
         input.setAttribute("name", GRID_ID);
+
+        let classValue = "pixel";
+
+        if (isLastColumn) {
+            classValue += " " + "last-column";
+        }
+
+        input.setAttribute("class", classValue);
         input.setAttribute("onclick",  onClickValueColorPixel(id))
         gridContainer.appendChild(input);
 
-        let isLastColumn = whichColumnIsIndex(index) === lastColumn;
         if (isLastColumn) {
             let lineBreak = document.createElement("br");
             gridContainer.appendChild(lineBreak);
