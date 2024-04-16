@@ -84,6 +84,23 @@ function generateFileTypeOptions() {
     });
 }
 
+function makeScreenshotOfPixelPicture() {
+    $(document).ready(function(){
+        let fileName = $("#" + FILE_NAME_ID).val();
+        let fileType = $("#" + FILE_TYPE_ID).val();
+
+        let fullFileName = fileName + "." + fileType;
+
+        let gridContainer = $("#" + GRID_ID);
+        // [0] is necessary
+        html2canvas(gridContainer[0]).then((canvas) => {
+            canvas.toBlob(function (blob) {
+                window.saveAs(blob, fullFileName);
+            });
+        });
+    });
+}
+
 function colorPixel(id) {
     let color = document.getElementById(PIXEL_COLOR_ID).value;
 
