@@ -1,4 +1,4 @@
-$small-device-width: 768px;
+$small-device-width: 576px;
 
 $default-pixel-color: #ffffff;
 
@@ -9,17 +9,19 @@ $default-border: 1px solid #000000;
   justify-content: center;
 }
 
-.container-tools {
+.container-reset {
   padding-left: 0;
   padding-right: 0;
 }
 
 .tools {
   display: flex;
+  div {
+    border: $default-border;
+  }
 }
 
 .pixelColor {
-  border: $default-border;
   display: flex;
   flex-direction: column;
 
@@ -32,7 +34,6 @@ $default-border: 1px solid #000000;
   }
 }
 .fill {
-  border: $default-border;
   display: flex;
   flex-direction: column;
 
@@ -47,7 +48,10 @@ $default-border: 1px solid #000000;
 
 .download {
   display: flex;
-  flex-wrap: wrap;
+
+  div {
+    border: $default-border;
+  }
 }
 
 @media only screen and (max-width: $small-device-width) {
@@ -57,7 +61,6 @@ $default-border: 1px solid #000000;
 
   .tools {
     flex-direction: column;
-    align-items: center;
   }
 
   .pixelColor {
@@ -66,5 +69,10 @@ $default-border: 1px solid #000000;
 
   .fill {
     flex-direction: row;
+  }
+
+  .download {
+    flex-direction: column;
+    align-items: center;
   }
 }

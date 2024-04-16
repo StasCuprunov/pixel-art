@@ -29,14 +29,14 @@
                                     <script>generateGridSizeOptions();</script>
                                 </select>
                             </div>
-                            <div class="container container-tools">
+                            <div class="container container-reset">
                                 <div class="row">
                                     <div class="tools">
-                                        <div class="col-6 pixelColor">
+                                        <div class="col-sm-6 pixelColor">
                                             <label for="pixelColor">Mit welcher Farbe m&ouml;chtest du f&auml;rben?</label>
                                             <input type="color" id="pixelColor" name="pixelColor" value="#ff0000">
                                         </div>
-                                        <div class="col-6 fill">
+                                        <div class="col-sm-6 fill">
                                             <label for="fill">
                                                 M&ouml;chtest du deine benachbarten Pixel mit
                                                 den angeklickten Pixel im Bild f&auml;rben?
@@ -58,19 +58,23 @@
                                     <script>generateGrid();</script>
                                 </div>
                             </div>
-                            <div class="download">
-                                <div>
-                                    <label for="fileName">Gebe den Dateinamen f&uuml;r dein Bild ein</label>
-                                    <input type="text" id="fileName" name="fileName" required/>
-                                </div>
-                                <div>
-                                    <label for="fileType">Welcher Dateityp soll verwendet werden?</label>
-                                    <select id="fileType" name="fileType">
-                                        <script>generateFileTypeOptions();</script>
-                                    </select>
-                                </div>
-                                <div>
-                                    <input type="submit" value="Bild herunterladen"/>
+                            <div class="container container-reset">
+                                <div class="row">
+                                    <div class="download">
+                                        <div class="col-sm-5">
+                                            <label for="fileName">Gebe den Dateinamen f&uuml;r dein Bild ein</label>
+                                            <input type="text" id="fileName" name="fileName" required/>
+                                        </div>
+                                        <div class="col-sm-5">
+                                            <label for="fileType">Welcher Dateityp soll verwendet werden?</label>
+                                            <select id="fileType" name="fileType">
+                                                <script>generateFileTypeOptions();</script>
+                                            </select>
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <input type="submit" value="Bild herunterladen"/>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </section>
