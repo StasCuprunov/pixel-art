@@ -71,6 +71,19 @@ function changeTool() {
     }
 }
 
+function generateFileTypeOptions() {
+    let listOfFileTypes = ["gif", "jpg", "png"];
+
+    let fileTypeContainer = document.getElementById(FILE_TYPE_ID);
+
+    listOfFileTypes.forEach((fileType) => {
+        let option = document.createElement("option");
+        option.setAttribute("value", fileType);
+        option.innerHTML = fileType.toUpperCase();
+        fileTypeContainer.appendChild(option);
+    });
+}
+
 function colorPixel(id) {
     let color = document.getElementById(PIXEL_COLOR_ID).value;
 
