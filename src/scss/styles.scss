@@ -37,7 +37,7 @@ p {
   margin: 0;
 }
 
-.container {
+.container:not(.website-center) {
   padding-left: 0;
   padding-right: 0;
 }
@@ -45,11 +45,6 @@ p {
 .website-center {
   display: flex;
   justify-content: center;
-}
-
-.container-reset {
-  padding-left: 0;
-  padding-right: 0;
 }
 
 .gridSizeContainer, .tools {

@@ -8,5 +8,10 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "gulp": "^5.0.0",
+    "gulp-compile-handlebars": "^0.6.1",
+    "gulp-rename": "^2.0.0"
+  }
 }
