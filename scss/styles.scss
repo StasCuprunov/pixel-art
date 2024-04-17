@@ -14,16 +14,32 @@ body {
   line-height: 20px;
 }
 
+section {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
 h1 {
   font-size: 60px;
   line-height: 60px;
   font-weight: 300;
+  margin-bottom: 10px;
 }
 
 h2 {
   font-size: 40px;
   line-height: 40px;
   font-weight: 300;
+  margin-bottom: 10px;
+}
+
+p {
+  margin: 0;
+}
+
+.container {
+  padding-left: 0;
+  padding-right: 0;
 }
 
 .website-center {
@@ -34,6 +50,10 @@ h2 {
 .container-reset {
   padding-left: 0;
   padding-right: 0;
+}
+
+.gridSizeContainer, .tools {
+  margin-bottom: 10px;
 }
 
 .tools {
@@ -100,15 +120,23 @@ h2 {
     line-height: 15px;
   }
 
+  section {
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+
   h1 {
     font-size: 45px;
     line-height: 45px;
+    margin-bottom: 5px;
   }
 
   h2 {
     font-size: 30px;
     line-height: 30px;
+    margin-bottom: 5px;
   }
+
 }
 
 @media only screen and (max-width: $small-device-width) {
@@ -118,6 +146,15 @@ h2 {
 
   .tools {
     flex-direction: column;
+
+    div {
+      margin-bottom: 10px;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+
   }
 
   .download {
