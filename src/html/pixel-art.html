@@ -3,6 +3,8 @@
 <head>
     <title>Pixel Art</title>
 
+    <meta charset="utf-8">
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.0/FileSaver.min.js"></script>
@@ -17,7 +19,6 @@
 <div class="container website-center">
     <div class="row">
         <div class="col-12">
-
             <section>
                 <div class="container">
                     <div class="row">
@@ -32,21 +33,18 @@
                     <div class="container">
                         <div class="row">
                             <div>
-                                <label for="gridSize">Welche quadratische Pixelgr&ouml;&szlig;e soll dein Bild haben?</label>
+                                <label for="gridSize">Welche quadratische Pixelgröße soll dein Bild haben?</label>
                                 <select id="gridSize" name="gridSize" onchange="resetGrid()">
                                     <script>generateGridSizeOptions();</script>
                                 </select>
                             </div>
                             <div class="tools">
                                 <div class="col-sm-6 pixelColor">
-                                    <label for="pixelColor">Mit welcher Farbe m&ouml;chtest du f&auml;rben?</label>
+                                    <label for="pixelColor">Mit welcher Farbe möchtest du färben?</label>
                                     <input type="color" id="pixelColor" name="pixelColor" value="#ff0000">
                                 </div>
                                 <div class="col-sm-6 fill">
-                                    <label for="fill">
-                                        M&ouml;chtest du deine benachbarten Pixel mit
-                                        den angeklickten Pixel im Bild f&auml;rben?
-                                    </label>
+                                    <label for="fill">Möchtest du deine benachbarten Pixel mit den angeklickten Pixel im Bild färben?</label>
                                     <input type="checkbox" id="fill" name="fill" onchange="changeTool()"/>
                                 </div>
                             </div>
@@ -55,8 +53,8 @@
                     <div class="container">
                         <div class="row">
                             <div class="resetContainer">
-                                <label for="reset">Ich m&ouml;chte alle Pixel zur&uuml;cksetzen</label>
-                                <input type="button" id="reset" name="reset" value="Zur&uuml;cksetzen" onclick="resetGrid()"/>
+                                <label for="reset">Ich möchte alle Pixel zurücksetzen</label>
+                                <input type="button" id="reset" name="reset" value="Zurücksetzen" onclick="resetGrid()"/>
                             </div>
                         </div>
                     </div>
@@ -76,7 +74,7 @@
                         <div class="row">
                             <div class="download">
                                 <div class="col-sm-5">
-                                    <label for="fileName">Gebe den Dateinamen f&uuml;r dein Bild ein</label>
+                                    <label for="fileName">Gebe den Dateinamen für dein Bild ein</label>
                                     <input type="text" id="fileName" name="fileName" required/>
                                 </div>
                                 <div class="col-sm-5">
@@ -91,8 +89,7 @@
                             </div>
                         </div>
                     </div>
-                </section>
-            </form>
+                </section>            </form>
         </div>
     </div>
 </div>

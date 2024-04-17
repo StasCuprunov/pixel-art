@@ -1,0 +1,31 @@
+<section>
+    <div class="container">
+        <div class="row">
+            <h2>{{CREATE_PICTURE.title}}</h2>
+            <div id="gridContainer">
+                <div id="grid" class="grid">
+                    <script>generateGrid();</script>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="download">
+                <div class="col-sm-5">
+                    <label for="fileName">{{CREATE_PICTURE.download.fileName.label}}</label>
+                    <input type="text" id="fileName" name="fileName" required/>
+                </div>
+                <div class="col-sm-5">
+                    <label for="fileType">{{CREATE_PICTURE.download.fileType.label}}</label>
+                    <select id="fileType" name="fileType">
+                        <script>generateFileTypeOptions();</script>
+                    </select>
+                </div>
+                <div class="col-sm-2">
+                    <input type="submit" value="{{CREATE_PICTURE.download.submitText}}"/>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

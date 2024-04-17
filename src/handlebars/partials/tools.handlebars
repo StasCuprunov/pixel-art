@@ -1,0 +1,31 @@
+<section>
+    <h2>{{TOOLS.title}}</h2>
+    <div class="container">
+        <div class="row">
+            <div>
+                <label for="gridSize">{{TOOLS.gridSize.label}}</label>
+                <select id="gridSize" name="gridSize" onchange="resetGrid()">
+                    <script>generateGridSizeOptions();</script>
+                </select>
+            </div>
+            <div class="tools">
+                <div class="col-sm-6 pixelColor">
+                    <label for="pixelColor">{{TOOLS.pixelColor.label}}</label>
+                    <input type="color" id="pixelColor" name="pixelColor" value="#ff0000">
+                </div>
+                <div class="col-sm-6 fill">
+                    <label for="fill">{{TOOLS.fill.label}}</label>
+                    <input type="checkbox" id="fill" name="fill" onchange="changeTool()"/>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="resetContainer">
+                <label for="reset">{{TOOLS.reset.label}}</label>
+                <input type="button" id="reset" name="reset" value="{{TOOLS.reset.buttonText}}" onclick="resetGrid()"/>
+            </div>
+        </div>
+    </div>
+</section>

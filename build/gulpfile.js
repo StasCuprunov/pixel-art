@@ -1,14 +1,16 @@
-const gulp = require("gulp");
-const handlebars = require("gulp-compile-handlebars");
-const rename = require("gulp-rename");
+let gulp= require("gulp");
+let handlebars= require("gulp-compile-handlebars");
+let rename= require("gulp-rename");
 
 gulp.task("default", function () {
-    const options = {
+    let options = {
         batch : ["../src/handlebars/partials"],
     };
 
+    let templateData = require("../src/js/templateData.js");
+
     return gulp.src("../src/handlebars/pixel-art.handlebars")
-        .pipe(handlebars(null, options))
+        .pipe(handlebars(templateData, options))
         .pipe(rename("pixel-art.html"))
         .pipe(gulp.dest("../src/html"));
 });
