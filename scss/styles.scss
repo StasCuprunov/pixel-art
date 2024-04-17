@@ -1,8 +1,11 @@
 $small-device-width: 576px;
 
-$default-pixel-color: #ffffff;
+$black: #000000;
+$white: #ffffff;
 
-$default-border: 1px solid #000000;
+$default-pixel-color: $white;
+
+$default-pixel-border: 1px solid $black;
 
 .website-center {
   display: flex;
@@ -17,7 +20,7 @@ $default-border: 1px solid #000000;
 .tools {
   display: flex;
   div {
-    border: $default-border;
+    border: $default-pixel-border;
   }
 }
 
@@ -54,21 +57,21 @@ $default-border: 1px solid #000000;
 
 .pixel {
   background-color: $default-pixel-color;
-  border-top: $default-border;
-  border-left: $default-border;
-  border-bottom: $default-border;
+  border-top: $default-pixel-border;
+  border-left: $default-pixel-border;
+  border-bottom: $default-pixel-border;
   border-right: 0;
 }
 
 .pixel.last-column {
-  border-right: $default-border;
+  border-right: $default-pixel-border;
 }
 
 .download {
   display: flex;
 
   div {
-    border: $default-border;
+    border: $default-pixel-border;
   }
 }
 
@@ -79,14 +82,6 @@ $default-border: 1px solid #000000;
 
   .tools {
     flex-direction: column;
-  }
-
-  .pixelColor {
-    flex-direction: row;
-  }
-
-  .fill {
-    flex-direction: row;
   }
 
   .download {

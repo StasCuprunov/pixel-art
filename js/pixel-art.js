@@ -14,7 +14,8 @@ function generateGridSizeOptions() {
 function generateGrid() {
     let lastColumn = sizeOfGrid() - 1;
 
-    let gridContainer = document.getElementById(GRID_ID);
+    let grid = document.getElementById(GRID_ID);
+    let pixelLength = calculatePixelLength();
 
     for (let index = 0; index < getIndexBorder(); index++) {
         let id = generatePixelId(index);
@@ -32,12 +33,14 @@ function generateGrid() {
         }
 
         input.setAttribute("class", classValue);
+        input.style.height = pixelsAsString(pixelLength);
+        input.style.width = pixelsAsString(pixelLength);
         input.setAttribute("onclick",  onClickValueColorPixel(id))
-        gridContainer.appendChild(input);
+        grid.appendChild(input);
 
         if (isLastColumn) {
             let lineBreak = document.createElement("br");
-            gridContainer.appendChild(lineBreak);
+            grid.appendChild(lineBreak);
         }
     }
 }
@@ -45,11 +48,7 @@ function generateGrid() {
 function resetGrid() {
     document.getElementById(FILL_ID).checked = false;
     setDisableForPixelColor(false);
-
-    // remove grid
-    let gridContainer = document.getElementById(GRID_ID);
-    gridContainer.textContent = '';
-
+    removeGrid();
     generateGrid();
 }
 
@@ -228,4 +227,24 @@ function onClickValueColorPixel(id) {
 
 function onClickValueFillAdjacentPixels(id) {
     return "fillAdjacentPixels('" + id + "')";
+}
+
+function calculatePixelLength() {
+    let multiplierForSmallerPixels = 0.8;
+    let subtrahendForSmallerPixels = 1;
+
+    let widthOfGridContainer = document.getElementById(GRID_CONTAINER_ID).offsetWidth;
+    let numberOfBorderPixels = sizeOfGrid() + 1;
+    let availableWidth = widthOfGridContainer - numberOfBorderPixels;
+
+    return Math.floor((availableWidth / sizeOfGrid()) * multiplierForSmallerPixels) - subtrahendForSmallerPixels;
+}
+
+function pixelsAsString(numberOfPixels) {
+    return numberOfPixels + "px";
+}
+
+function removeGrid() {
+    let gridContainer = document.getElementById(GRID_ID);
+    gridContainer.textContent = '';
 }
