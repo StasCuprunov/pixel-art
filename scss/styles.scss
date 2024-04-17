@@ -1,4 +1,5 @@
 $small-device-width: 576px;
+$medium-device-width: 768px;
 
 $black: #000000;
 $white: #ffffff;
@@ -6,6 +7,24 @@ $white: #ffffff;
 $default-pixel-color: $white;
 
 $default-pixel-border: 1px solid $black;
+
+body {
+  font-family: "Trebuchet MS", sans-serif;
+  font-size: 20px;
+  line-height: 20px;
+}
+
+h1 {
+  font-size: 60px;
+  line-height: 60px;
+  font-weight: 300;
+}
+
+h2 {
+  font-size: 40px;
+  line-height: 40px;
+  font-weight: 300;
+}
 
 .website-center {
   display: flex;
@@ -72,6 +91,23 @@ $default-pixel-border: 1px solid $black;
 
   div {
     border: $default-pixel-border;
+  }
+}
+
+@media only screen and (max-width: $medium-device-width) {
+  body {
+    font-size: 15px;
+    line-height: 15px;
+  }
+
+  h1 {
+    font-size: 45px;
+    line-height: 45px;
+  }
+
+  h2 {
+    font-size: 30px;
+    line-height: 30px;
   }
 }
 
