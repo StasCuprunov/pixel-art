@@ -79,6 +79,10 @@ p {
   }
 }
 
+.gridContainer {
+  margin-bottom: 30px;
+}
+
 .grid {
   display: inline-block;
 
@@ -113,6 +117,7 @@ p {
   body {
     font-size: 15px;
     line-height: 15px;
+    text-align: center;
   }
 
   section {
@@ -132,15 +137,13 @@ p {
     margin-bottom: 5px;
   }
 
-}
-
-@media only screen and (max-width: $small-device-width) {
-  body {
-    text-align: center;
+  .gridContainer {
+    margin-bottom: 20px;
   }
 
   .tools {
     flex-direction: column;
+    align-items: center;
 
     div {
       margin-bottom: 10px;
@@ -155,5 +158,14 @@ p {
   .download {
     flex-direction: column;
     align-items: center;
+
+    div {
+      margin-bottom: 10px;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
   }
 }
+

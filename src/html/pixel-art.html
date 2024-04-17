@@ -32,18 +32,18 @@
                     <h2>Werkzeuge, um dein Bild zu erstellen</h2>
                     <div class="container">
                         <div class="row">
-                            <div>
+                            <div class="gridSizeContainer">
                                 <label for="gridSize">Welche quadratische Pixelgröße soll dein Bild haben?</label>
                                 <select id="gridSize" name="gridSize" onchange="resetGrid()">
                                     <script>generateGridSizeOptions();</script>
                                 </select>
                             </div>
                             <div class="tools">
-                                <div class="col-sm-6 pixelColor">
+                                <div class="col-md-6 pixelColor">
                                     <label for="pixelColor">Mit welcher Farbe möchtest du färben?</label>
                                     <input type="color" id="pixelColor" name="pixelColor" value="#ff0000">
                                 </div>
-                                <div class="col-sm-6 fill">
+                                <div class="col-md-6 fill">
                                     <label for="fill">Möchtest du deine benachbarten Pixel mit den angeklickten Pixel im Bild färben?</label>
                                     <input type="checkbox" id="fill" name="fill" onchange="changeTool()"/>
                                 </div>
@@ -63,7 +63,7 @@
                     <div class="container">
                         <div class="row">
                             <h2>Dein Kunstwerk erstellen</h2>
-                            <div id="gridContainer">
+                            <div id="gridContainer" class="gridContainer">
                                 <div id="grid" class="grid">
                                     <script>generateGrid();</script>
                                 </div>
@@ -73,17 +73,17 @@
                     <div class="container">
                         <div class="row">
                             <div class="download">
-                                <div class="col-sm-5">
+                                <div class="col-md-5">
                                     <label for="fileName">Gebe den Dateinamen für dein Bild ein</label>
                                     <input type="text" id="fileName" name="fileName" required/>
                                 </div>
-                                <div class="col-sm-5">
+                                <div class="col-md-5">
                                     <label for="fileType">Welcher Dateityp soll verwendet werden?</label>
                                     <select id="fileType" name="fileType">
                                         <script>generateFileTypeOptions();</script>
                                     </select>
                                 </div>
-                                <div class="col-sm-2">
+                                <div class="col-md-2">
                                     <input type="submit" value="Bild herunterladen"/>
                                 </div>
                             </div>
