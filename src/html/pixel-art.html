@@ -34,7 +34,7 @@
                         <div class="row">
                             <div class="gridSizeContainer">
                                 <label for="gridSize">Welche quadratische Pixelgröße soll dein Bild haben?</label>
-                                <select id="gridSize" name="gridSize" onchange="resetGrid()">
+                                <select id="gridSize" name="gridSize" class="gridSize" onchange="resetGrid()">
                                     <script>generateGridSizeOptions();</script>
                                 </select>
                             </div>
@@ -45,7 +45,8 @@
                                 </div>
                                 <div class="col-md-6 fill">
                                     <label for="fill">Möchtest du deine benachbarten Pixel mit den angeklickten Pixel im Bild färben?</label>
-                                    <input type="checkbox" id="fill" name="fill" onchange="changeTool()"/>
+                                    <input type="checkbox" id="fill" name="fill" class="form-check-input fillButton"
+                                           onchange="changeTool()"/>
                                 </div>
                             </div>
                         </div>
