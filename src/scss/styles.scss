@@ -96,26 +96,23 @@ select, input[type="text"], input[type="checkbox"], input[type="submit"], .reset
 }
 
 .gridContainer {
+  display: flex;
+  justify-content: center;
   margin-bottom: 30px;
-  text-align: center;
 }
 
 .grid {
-  display: inline-block;
-
-  br {
-    display: block;
-    content: "";
-    margin-top: -10px;
-  }
+  display: flex;
 }
 
 .pixel {
   background-color: $default-pixel-color;
   border-top: $default-pixel-border;
   border-left: $default-pixel-border;
+}
+
+.pixel.last-row {
   border-bottom: $default-pixel-border;
-  border-right: 0;
 }
 
 .pixel.last-column {

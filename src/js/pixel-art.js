@@ -13,36 +13,27 @@ function generateGridSizeOptions() {
 
 function generateGrid() {
     $(document).ready(function () {
-        let lastColumn = sizeOfGrid() - 1;
-
         let grid = document.getElementById(GRID_ID);
         let pixelLength = calculatePixelLength();
+        let gridRow;
 
-        for (let index = 0; index < getIndexBorder(); index++) {
+        let indexBorder = getIndexBorder();
+        for (let index = 0; index < indexBorder; index++) {
             let id = generatePixelId(index);
-            let isLastColumn = whichColumnIsIndex(index) === lastColumn;
 
-            let input = document.createElement("input");
-            input.setAttribute("type", "button");
-            input.setAttribute("id", id);
-            input.setAttribute("name", GRID_ID);
+            let isFirstRow = isPixelFirstRow(index);
+            let isLastRow = isPixelLastRow(index);
+            let isLastColumn = isPixelLastColumn(index);
 
-            let classValue = "pixel";
-
-            if (isLastColumn) {
-                classValue += " " + "last-column";
+            if (isFirstRow) {
+                gridRow = document.createElement("div");
             }
 
-            input.setAttribute("class", classValue);
-            let numberOfPixelsAsCSS = numberOfPixelsAsString(pixelLength);
-            input.style.height = numberOfPixelsAsCSS;
-            input.style.width = numberOfPixelsAsCSS;
-            input.setAttribute("onclick",  onClickValueColorPixel(id))
-            grid.appendChild(input);
+            let pixel= createPixel(id, pixelLength, isLastRow, isLastColumn);
+            gridRow.appendChild(pixel);
 
-            if (isLastColumn) {
-                let lineBreak = document.createElement("br");
-                grid.appendChild(lineBreak);
+            if (isLastRow) {
+                grid.appendChild(gridRow);
             }
         }
     });
@@ -68,7 +59,8 @@ function changeTool() {
     }
     setDisableForPixelColor(isDisabled);
 
-    for (let index = 0; index < getIndexBorder(); index++) {
+    let indexBorder = getIndexBorder();
+    for (let index = 0; index < indexBorder; index++) {
         let id = generatePixelId(index);
 
         if (isFillToolActive) {
@@ -121,42 +113,78 @@ function fillAdjacentPixels(id) {
 
     let indexFillPixel = Number(id.replace(PREFIX_PIXEL_ID, ""));
 
-    const FIRST_ROW = 0;
-    const LAST_ROW = sizeOfGrid() - 1;
-    const FIRST_COLUMN = 0;
-    const LAST_COLUMN = sizeOfGrid() - 1;
+    fillAdjacentPixelsIfFillPixelIsNotInFirstColumn(indexFillPixel, fillColor);
+    fillAdjacentPixelsIfFillPixelIsNotInLastColumn(indexFillPixel, fillColor);
+    fillAdjacentPixelIfFillPixelIsNotFirstRow(indexFillPixel, fillColor);
+    fillAdjacentPixelIfFillPixelIsNotLastRow(indexFillPixel, fillColor);
+}
 
-    let rowFromFillIndex = whichRowIsIndex(indexFillPixel);
+function fillAdjacentPixelsIfFillPixelIsNotInFirstColumn(indexFillPixel, fillColor) {
     let columnFromFillIndex = whichColumnIsIndex(indexFillPixel);
 
-    if (rowFromFillIndex !== FIRST_ROW) {
+    if (columnFromFillIndex !== firstColumnNumber()) {
         changeColorFromPixel(indexTopFromPixel(indexFillPixel), fillColor);
+        let rowFromFillIndex = whichRowIsIndex(indexFillPixel);
 
-        if (columnFromFillIndex !== FIRST_COLUMN) {
+        if (rowFromFillIndex !== firstRowNumber()) {
             changeColorFromPixel(indexTopLeftFromPixel(indexFillPixel), fillColor);
         }
 
-        if (columnFromFillIndex !== LAST_COLUMN) {
+        if (rowFromFillIndex !== lastRowNumber()) {
             changeColorFromPixel(indexTopRightFromPixel(indexFillPixel), fillColor);
         }
     }
-    if (rowFromFillIndex !== LAST_ROW) {
+}
+
+function fillAdjacentPixelsIfFillPixelIsNotInLastColumn(indexFillPixel, fillColor) {
+    let columnFromFillIndex = whichColumnIsIndex(indexFillPixel);
+    if (columnFromFillIndex !== lastColumnNumber()) {
         changeColorFromPixel(indexBottomFromPixel(indexFillPixel), fillColor);
 
-        if (columnFromFillIndex !== FIRST_COLUMN) {
+        let rowFromFillIndex = whichRowIsIndex(indexFillPixel);
+        if (rowFromFillIndex !== firstRowNumber()) {
             changeColorFromPixel(indexBottomLeftFromPixel(indexFillPixel), fillColor);
         }
 
-        if (columnFromFillIndex !== LAST_COLUMN) {
+        if (rowFromFillIndex !== lastRowNumber()) {
             changeColorFromPixel(indexBottomRightFromPixel(indexFillPixel), fillColor);
         }
     }
-    if (columnFromFillIndex !== FIRST_COLUMN) {
+}
+
+function fillAdjacentPixelIfFillPixelIsNotFirstRow(indexFillPixel, fillColor) {
+    let rowFromFillIndex = whichRowIsIndex(indexFillPixel);
+    if (rowFromFillIndex !== firstRowNumber()) {
         changeColorFromPixel(indexLeftFromPixel(indexFillPixel), fillColor);
     }
-    if (columnFromFillIndex !== LAST_COLUMN) {
+}
+
+function fillAdjacentPixelIfFillPixelIsNotLastRow(indexFillPixel, fillColor) {
+    let rowFromFillIndex = whichRowIsIndex(indexFillPixel);
+    if (rowFromFillIndex !== lastRowNumber()) {
         changeColorFromPixel(indexRightFromPixel(indexFillPixel), fillColor);
     }
+}
+
+function createPixel(id, pixelLength, isLastRow, isLastColumn) {
+    let pixel= document.createElement("div");
+    pixel.setAttribute("id", id);
+
+    let classValue = "pixel";
+    if (isLastRow) {
+        classValue = addClassAsString(classValue, "last-row");
+    }
+    if (isLastColumn) {
+        classValue = addClassAsString(classValue, "last-column");
+    }
+
+    pixel.setAttribute("class", classValue);
+    let numberOfPixelsAsCSS = numberOfPixelsAsString(pixelLength);
+    pixel.style.height = numberOfPixelsAsCSS;
+    pixel.style.width = numberOfPixelsAsCSS;
+    pixel.setAttribute("onclick",  onClickValueColorPixel(id));
+
+    return pixel;
 }
 
 function sizeOfGrid() {
@@ -204,11 +232,11 @@ function getIndexBorder() {
     return size * size;
 }
 
-function whichRowIsIndex(index) {
+function whichColumnIsIndex(index) {
     return Math.floor(index / sizeOfGrid());
 }
 
-function whichColumnIsIndex(index) {
+function whichRowIsIndex(index) {
     return index % sizeOfGrid();
 }
 
@@ -271,4 +299,39 @@ function numberOfPixelsAsString(numberOfPixels) {
 function removeGrid() {
     let gridContainer = document.getElementById(GRID_ID);
     gridContainer.textContent = '';
+}
+
+function isPixelLastRow(index) {
+    let lastRow = sizeOfGrid() - 1;
+    return whichRowIsIndex(index) === lastRow;
+}
+
+function isPixelFirstRow(index) {
+    let firstRow = 0;
+    return whichRowIsIndex(index) === firstRow;
+}
+
+function isPixelLastColumn(index) {
+    let lastColumn = sizeOfGrid() - 1;
+    return whichColumnIsIndex(index) === lastColumn;
+}
+
+function addClassAsString(classList, newClass) {
+    return classList + " " + newClass;
+}
+
+function firstRowNumber() {
+    return 0;
+}
+
+function lastRowNumber() {
+    return sizeOfGrid() - 1;
+}
+
+function firstColumnNumber() {
+    return 0;
+}
+
+function lastColumnNumber() {
+    return sizeOfGrid() - 1;
 }
