@@ -3,9 +3,15 @@ const HEAD = {
 }
 
 const INTRODUCTION = {
-    "title" : "Pixel Art",
+    "title": "Pixel Art",
     "paragraph": "Auf dieser Webseite kannst du deine eigene Pixelkunstwerte erstellen!"
 };
+
+const TIPS = {
+    "title": "Tipps",
+    "paragraph": "Falls die Pixel zu klein oder zu groß sind, dann kannst in deinem Browser hinein- bzw. hinauszoomen " +
+        "und anschließend alle Pixel zurücksetzen."
+}
 
 const TOOLS = {
   "title" : "Werkzeuge, um dein Bild zu erstellen",
@@ -41,6 +47,7 @@ function templateData() {
     return {
         HEAD,
         INTRODUCTION,
+        TIPS,
         TOOLS,
         CREATE_PICTURE
     };

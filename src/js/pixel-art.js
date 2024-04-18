@@ -12,37 +12,40 @@ function generateGridSizeOptions() {
 }
 
 function generateGrid() {
-    let lastColumn = sizeOfGrid() - 1;
+    $(document).ready(function () {
+        let lastColumn = sizeOfGrid() - 1;
 
-    let grid = document.getElementById(GRID_ID);
-    let pixelLength = calculatePixelLength();
+        let grid = document.getElementById(GRID_ID);
+        let pixelLength = calculatePixelLength();
 
-    for (let index = 0; index < getIndexBorder(); index++) {
-        let id = generatePixelId(index);
-        let isLastColumn = whichColumnIsIndex(index) === lastColumn;
+        for (let index = 0; index < getIndexBorder(); index++) {
+            let id = generatePixelId(index);
+            let isLastColumn = whichColumnIsIndex(index) === lastColumn;
 
-        let input = document.createElement("input");
-        input.setAttribute("type", "button");
-        input.setAttribute("id", id);
-        input.setAttribute("name", GRID_ID);
+            let input = document.createElement("input");
+            input.setAttribute("type", "button");
+            input.setAttribute("id", id);
+            input.setAttribute("name", GRID_ID);
 
-        let classValue = "pixel";
+            let classValue = "pixel";
 
-        if (isLastColumn) {
-            classValue += " " + "last-column";
+            if (isLastColumn) {
+                classValue += " " + "last-column";
+            }
+
+            input.setAttribute("class", classValue);
+            let numberOfPixelsAsCSS = numberOfPixelsAsString(pixelLength);
+            input.style.height = numberOfPixelsAsCSS;
+            input.style.width = numberOfPixelsAsCSS;
+            input.setAttribute("onclick",  onClickValueColorPixel(id))
+            grid.appendChild(input);
+
+            if (isLastColumn) {
+                let lineBreak = document.createElement("br");
+                grid.appendChild(lineBreak);
+            }
         }
-
-        input.setAttribute("class", classValue);
-        input.style.height = pixelsAsString(pixelLength);
-        input.style.width = pixelsAsString(pixelLength);
-        input.setAttribute("onclick",  onClickValueColorPixel(id))
-        grid.appendChild(input);
-
-        if (isLastColumn) {
-            let lineBreak = document.createElement("br");
-            grid.appendChild(lineBreak);
-        }
-    }
+    });
 }
 
 function resetGrid() {
@@ -92,18 +95,16 @@ function generateFileTypeOptions() {
 }
 
 function makeScreenshotOfPixelPicture() {
-    $(document).ready(function(){
-        let fileName = $("#" + FILE_NAME_ID).val();
-        let fileType = $("#" + FILE_TYPE_ID).val();
+    let fileName = $(jQueryId(FILE_NAME_ID)).val();
+    let fileType = $(jQueryId(FILE_TYPE_ID)).val();
 
-        let fullFileName = fileName + "." + fileType;
+    let fullFileName = fileName + "." + fileType;
 
-        let gridContainer = $("#" + GRID_ID);
-        // [0] is necessary
-        html2canvas(gridContainer[0]).then((canvas) => {
-            canvas.toBlob(function (blob) {
-                window.saveAs(blob, fullFileName);
-            });
+    let gridContainer = $(jQueryId(GRID_ID));
+    // [0] is necessary
+    html2canvas(gridContainer[0]).then((canvas) => {
+        canvas.toBlob(function (blob) {
+            window.saveAs(blob, fullFileName);
         });
     });
 }
@@ -212,9 +213,7 @@ function whichColumnIsIndex(index) {
 }
 
 function setDisableForPixelColor(isDisabled) {
-    $(document).ready(function(){
-        $("#" + PIXEL_COLOR_ID).prop("disabled", isDisabled);
-    });
+    return $(jQueryId(PIXEL_COLOR_ID)).prop("disabled", isDisabled);
 }
 
 function generatePixelId(index) {
@@ -230,17 +229,42 @@ function onClickValueFillAdjacentPixels(id) {
 }
 
 function calculatePixelLength() {
-    let multiplierForSmallerPixels = 0.8;
-    let subtrahendForSmallerPixels = 1;
+    let gridSize = sizeOfGrid();
+    let containerWidth = document.getElementById(GRID_CONTAINER_ID).offsetWidth;
+    let containerHeight = maximumHeightForPixelPicture();
+    let pictureSize = Math.min(containerWidth, containerHeight);
 
-    let widthOfGridContainer = document.getElementById(GRID_CONTAINER_ID).offsetWidth;
-    let numberOfBorderPixels = sizeOfGrid() + 1;
-    let availableWidth = widthOfGridContainer - numberOfBorderPixels;
+    let sizeOfBorderPixels = gridSize + 1;
+    let availableWidthForPixels = pictureSize - sizeOfBorderPixels;
 
-    return Math.floor((availableWidth / sizeOfGrid()) * multiplierForSmallerPixels) - subtrahendForSmallerPixels;
+    return Math.floor(availableWidthForPixels / gridSize);
 }
 
-function pixelsAsString(numberOfPixels) {
+function maximumHeightForPixelPicture() {
+    let windowHeight = window.innerHeight;
+
+    let introductionHeight = outerHeightFromElement(INTRODUCTION_ID);
+    let tipsHeight = outerHeightFromElement(TIPS_ID);
+    let toolsHeight = outerHeightFromElement(TOOLS_ID);
+    let createPictureTitleHeight = outerHeightFromElementWithTag(PICTURE_ID, "h2");
+    let downloadHeight = outerHeightFromElement(DOWNLOAD_ID)
+
+    return windowHeight - (introductionHeight + tipsHeight + toolsHeight + createPictureTitleHeight + downloadHeight);
+}
+
+function outerHeightFromElement(id) {
+    return $(jQueryId(id)).outerHeight(true);
+}
+
+function outerHeightFromElementWithTag(id, tag) {
+    return $(jQueryId(id)).find(tag).outerHeight(true);
+}
+
+function jQueryId(id) {
+    return "#" + id;
+}
+
+function numberOfPixelsAsString(numberOfPixels) {
     return numberOfPixels + "px";
 }
 

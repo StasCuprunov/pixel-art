@@ -19,7 +19,7 @@
 <div class="container website-center">
     <div class="row">
         <div class="col-12">
-            <section>
+            <section id="introduction">
                 <div class="container">
                     <div class="row">
                         <h1>Pixel Art</h1>
@@ -27,14 +27,22 @@
                     </div>
                 </div>
             </section>
+            <section id="tips">
+                <div class="container">
+                    <div class="row">
+                        <h2>Tipps</h2>
+                        <p>Falls die Pixel zu klein oder zu groß sind, dann kannst in deinem Browser hinein- bzw. hinauszoomen und anschließend alle Pixel zurücksetzen.</p>
+                    </div>
+                </div>
+            </section>
             <form action="javascript:makeScreenshotOfPixelPicture()">
-                <section>
+                <section id="tools">
                     <h2>Werkzeuge, um dein Bild zu erstellen</h2>
                     <div class="container">
                         <div class="row">
                             <div class="gridSizeContainer">
                                 <label for="gridSize">Welche quadratische Pixelgröße soll dein Bild haben?</label>
-                                <select id="gridSize" name="gridSize" class="gridSize" onchange="resetGrid()">
+                                <select id="gridSize" name="gridSize" onchange="resetGrid()">
                                     <script>generateGridSizeOptions();</script>
                                 </select>
                             </div>
@@ -60,20 +68,22 @@
                         </div>
                     </div>
                 </section>
-                <section>
+                <section id="createPicture">
                     <div class="container">
                         <div class="row">
-                            <h2>Dein Kunstwerk erstellen</h2>
-                            <div id="gridContainer" class="gridContainer">
-                                <div id="grid" class="grid">
-                                    <script>generateGrid();</script>
+                            <div id="picture">
+                                <h2>Dein Kunstwerk erstellen</h2>
+                                <div id="gridContainer" class="gridContainer">
+                                    <div id="grid" class="grid">
+                                        <script>generateGrid();</script>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="container">
                         <div class="row">
-                            <div class="download">
+                            <div id="download" class="download">
                                 <div class="col-md-5">
                                     <label for="fileName">Gebe den Dateinamen für dein Bild ein</label>
                                     <input type="text" id="fileName" name="fileName" required/>
