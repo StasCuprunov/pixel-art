@@ -63,6 +63,10 @@ $input-submit: input-access("submit");
   content: fa-content($icon);
 }
 
+@mixin standard-transition() {
+  transition-duration: 0.4s;
+}
+
 body {
   font-family: "Trebuchet MS", sans-serif;
   @include same-font-size-and-line-height(20px);
@@ -100,20 +104,19 @@ select, #{$input-checkbox}, #{$input-color}, #{$input-text}, #{$input-submit}, .
 
 #{$input-checkbox} {
   @include deactivate-default-styles();
-  $transition-duration: 0.4s;
+  @include standard-transition();
   display: flex;
   justify-content: center;
   align-items: center;
   border-radius: 5px;
-  transition-duration: $transition-duration;
 
   &:hover {
     opacity: 0.8;
   }
 
   &:checked {
+    @include standard-transition();
     background-color: $red;
-    transition-duration: $transition-duration;
   }
 }
 
@@ -150,8 +153,8 @@ select, #{$input-checkbox}, #{$input-color}, #{$input-text}, #{$input-submit}, .
 }
 
 .pixel-color {
-
   input {
+    @include standard-transition();
     align-self: center;
     border: none;
     padding: 0;

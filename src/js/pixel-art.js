@@ -241,7 +241,21 @@ function whichRowIsIndex(index) {
 }
 
 function setDisableForPixelColor(isDisabled) {
-    return $(jQueryId(PIXEL_COLOR_ID)).prop("disabled", isDisabled);
+    $(jQueryId(PIXEL_COLOR_ID)).prop("disabled", isDisabled);
+
+    let cursorValue, opacityValue;
+
+    if (isDisabled) {
+        cursorValue = "not-allowed";
+        opacityValue = 0.6;
+    }
+    else {
+        cursorValue = "pointer";
+        opacityValue = 1;
+    }
+
+    document.getElementById(PIXEL_COLOR_ID).style.cursor = cursorValue;
+    document.getElementById(PIXEL_COLOR_ID).style.opacity = opacityValue;
 }
 
 function generatePixelId(index) {
