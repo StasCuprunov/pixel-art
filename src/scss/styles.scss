@@ -3,36 +3,68 @@ $medium-device-width: 768px;
 
 $black: #000000;
 $white: #ffffff;
+$red: #ff0015;
 
 $beige: #ffdd99;
 $light-beige: #fff7e5;
+
+$light-blue: #99bbff;
 
 $default-pixel-color: $white;
 
 $default-pixel-border: 1px solid $black;
 
+@mixin same-font-size-and-line-height($size) {
+  font-size: $size;
+  line-height: $size;
+}
+
+@mixin same-height-and-width($size) {
+  height: $size;
+  width: $size;
+}
+
+@mixin same-margin-top-and-bottom($size) {
+  margin-top: $size;
+  margin-bottom: $size;
+}
+
+@mixin tools-element-background() {
+  background-color: $light-blue;
+  border-radius: 5px;
+}
+
+@mixin input-style() {
+  background-color: $light-beige;
+  cursor: pointer;
+  border: $default-pixel-border;
+}
+
+@mixin deactivate-default-styles() {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
 body {
   font-family: "Trebuchet MS", sans-serif;
-  font-size: 20px;
-  line-height: 20px;
+  @include same-font-size-and-line-height(20px);
   background-color: $beige;
 }
 
 section {
-  margin-top: 30px;
-  margin-bottom: 30px;
+  @include same-margin-top-and-bottom(30px);
 }
 
 h1 {
-  font-size: 60px;
-  line-height: 60px;
-  font-weight: 300;
-  margin-bottom: 10px;
+  @include same-font-size-and-line-height(60px);
 }
 
 h2 {
-  font-size: 40px;
-  line-height: 40px;
+  @include same-font-size-and-line-height(40px);
+}
+
+h1, h2 {
   font-weight: 300;
   margin-bottom: 10px;
 }
@@ -45,9 +77,29 @@ label {
   pointer-events: none;
 }
 
-select, input[type="text"], input[type="checkbox"], input[type="submit"], .resetContainer > input {
-  background-color: $light-beige;
+select, input[type="color"], input[type="checkbox"], input[type="text"], input[type="submit"], .reset-container > input {
+  @include input-style();
 }
+
+input[type="checkbox"] {
+  @include deactivate-default-styles();
+  border-radius: 5px;
+
+  &:hover {
+    opacity: 0.9;
+  }
+
+  &:checked {
+    background-color: $red;
+  }
+}
+
+input[type="checkbox"]:checked:before {
+  @extend %fa-icon;
+  @extend .fa-solid;
+  content: fa-content($fa-var-check);
+}
+
 
 .container:not(.website-center) {
   padding-left: 0;
@@ -59,24 +111,24 @@ select, input[type="text"], input[type="checkbox"], input[type="submit"], .reset
   justify-content: center;
 }
 
-.gridSizeContainer, .tools {
+.grid-size-container, .tools {
   margin-bottom: 10px;
 }
 
 .tools {
   display: flex;
+
   div {
-    border: $default-pixel-border;
+    padding: 10px;
+    margin-right: 20px;
+
+    &:last-child {
+      margin-right: 0;
+    }
   }
 }
 
-.pixelColor {
-  display: flex;
-  flex-direction: column;
-
-  label {
-    text-align: center;
-  }
+.pixel-color {
 
   input {
     align-self: center;
@@ -86,16 +138,25 @@ select, input[type="text"], input[type="checkbox"], input[type="submit"], .reset
 }
 
 .fill {
-  display: flex;
-  flex-direction: column;
   align-items: center;
 
+  input {
+    @include same-height-and-width(25px);
+  }
+}
+
+.pixel-color, .fill {
+  display: flex;
+  flex-direction: column;
+  @include tools-element-background();
+
   label {
+    margin-bottom: 10px;
     text-align: center;
   }
 }
 
-.gridContainer {
+.grid-container {
   display: flex;
   justify-content: center;
   margin-bottom: 30px;
@@ -109,6 +170,7 @@ select, input[type="text"], input[type="checkbox"], input[type="submit"], .reset
   background-color: $default-pixel-color;
   border-top: $default-pixel-border;
   border-left: $default-pixel-border;
+  cursor: pointer;
 }
 
 .pixel.last-row {
@@ -129,49 +191,61 @@ select, input[type="text"], input[type="checkbox"], input[type="submit"], .reset
 
 @media only screen and (max-width: $medium-device-width) {
   body {
-    font-size: 15px;
-    line-height: 15px;
+    @include same-font-size-and-line-height(15px);
     text-align: center;
   }
 
   section {
-    margin-top: 20px;
-    margin-bottom: 20px;
+    @include same-margin-top-and-bottom(20px);
   }
 
   h1 {
-    font-size: 45px;
-    line-height: 45px;
-    margin-bottom: 5px;
+    @include same-font-size-and-line-height(45px);
   }
 
   h2 {
-    font-size: 30px;
-    line-height: 30px;
+    @include same-font-size-and-line-height(30px);
+  }
+
+  h1, h2 {
     margin-bottom: 5px;
   }
 
-  .gridContainer {
+  .grid-container {
     margin-bottom: 20px;
   }
 
-  .tools {
-    flex-direction: column;
-    align-items: center;
-
-    div {
-      margin-bottom: 10px;
-
-      &:last-child {
-        margin-bottom: 0;
-      }
-    }
-
+  .grid-size, .reset {
+      @include tools-element-background();
   }
 
-  .download {
+  .tools {
+
+    div {
+      padding: 5px;
+      margin-right: 0;
+    }
+  }
+
+  .fill {
+    input {
+      @include same-height-and-width(20px);
+    }
+  }
+
+  .pixel-color, .fill {
+
+    label {
+      margin-bottom: 5px;
+    }
+  }
+
+  .tools, .download {
     flex-direction: column;
     align-items: center;
+  }
+
+  .pixel-color, .fill, .tools, .download {
 
     div {
       margin-bottom: 10px;
