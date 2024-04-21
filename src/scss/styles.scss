@@ -24,7 +24,6 @@ $default-pixel-border: 1px solid $black;
 $input-checkbox: input-access("checkbox");
 $input-color: input-access("color");
 $input-text: input-access("text");
-$input-submit: input-access("submit");
 
 @mixin same-font-size-and-line-height($size) {
   font-size: $size;
@@ -112,7 +111,7 @@ label {
   pointer-events: none;
 }
 
-select, #{$input-checkbox}, #{$input-color}, #{$input-text}, #{$input-submit}, .reset > input {
+select, #{$input-checkbox}, #{$input-color}, #{$input-text}, .reset > input {
   @include input-style();
 }
 
@@ -221,8 +220,17 @@ select, #{$input-checkbox}, #{$input-color}, #{$input-text}, #{$input-submit}, .
 
 .download > .submit {
   justify-content: center;
-  input {
-    height: 40px;
+
+  .button {
+    @include input-style();
+    flex-direction: row;
+    justify-content: center;
+
+    &:after {
+      @include add-font-awesome-icon-solid-as-content($fa-var-file-arrow-down);
+      align-self: center;
+      margin-left: 10px;
+    }
   }
 }
 
@@ -279,9 +287,11 @@ select, #{$input-checkbox}, #{$input-color}, #{$input-text}, #{$input-submit}, .
   }
 
   .download > .submit {
-    input {
+    .button {
       height: 30px;
+      align-items: center;
     }
   }
+
 }
 
