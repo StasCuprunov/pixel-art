@@ -221,15 +221,13 @@ select, #{$input-checkbox}, #{$input-color}, #{$input-text}, .reset > input {
 .download > .submit {
   justify-content: center;
 
-  .button {
+  button {
     @include input-style();
-    flex-direction: row;
-    justify-content: center;
+    align-self: center;
+    padding: 10px;
 
     &:after {
       @include add-font-awesome-icon-solid-as-content($fa-var-file-arrow-down);
-      align-self: center;
-      margin-left: 10px;
     }
   }
 }
@@ -287,9 +285,15 @@ select, #{$input-checkbox}, #{$input-color}, #{$input-text}, .reset > input {
   }
 
   .download > .submit {
-    .button {
+    button {
+      display: flex;
       height: 30px;
       align-items: center;
+      padding: 5px;
+
+      &:after {
+        margin-left: 5px;
+      }
     }
   }
 

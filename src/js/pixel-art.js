@@ -86,6 +86,20 @@ function generateFileTypeOptions() {
     });
 }
 
+function submit() {
+    makeScreenshotOfPixelPicture();
+    resetDownloadInputs();
+}
+
+function resetDownloadInputs() {
+    document.getElementById(FILE_NAME_ID).value = "";
+    setSelectToFirstOption(FILE_TYPE_ID);
+}
+
+function setSelectToFirstOption(id) {
+    document.getElementById(id).value = document.getElementById(id).options[0].value;
+}
+
 function makeScreenshotOfPixelPicture() {
     let fileName = $(jQueryId(FILE_NAME_ID)).val();
     let fileType = $(jQueryId(FILE_TYPE_ID)).val();
