@@ -8,17 +8,17 @@
         </div>
     </div>
     <div id="download" class="download">
-        <div class="col-md-4">
+        <div class="col-md-3 file-name">
             <label for="fileName">{{CREATE_PICTURE.download.fileName.label}}</label>
             <input type="text" id="fileName" name="fileName" required/>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-3 file-type">
             <label for="fileType">{{CREATE_PICTURE.download.fileType.label}}</label>
             <select id="fileType" name="fileType">
                 <script>generateFileTypeOptions();</script>
             </select>
         </div>
-        <div class="col-md-2">
+        <div class="col-md-4 col-lg-3 submit">
             <input type="submit" value="{{CREATE_PICTURE.download.submitText}}"/>
         </div>
     </div>

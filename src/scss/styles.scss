@@ -3,6 +3,7 @@
 
 $small-device-width: 576px;
 $medium-device-width: 768px;
+$large-device-width: 992px;
 
 $black: #000000;
 $white: #ffffff;
@@ -57,6 +58,11 @@ $input-submit: input-access("submit");
   background-color: $light-beige;
   cursor: pointer;
   border: $default-pixel-border;
+  border-radius: 5px;
+
+  &:hover {
+    opacity: 0.8;
+  }
 }
 
 @mixin deactivate-default-styles() {
@@ -116,11 +122,6 @@ select, #{$input-checkbox}, #{$input-color}, #{$input-text}, #{$input-submit}, .
   display: flex;
   justify-content: center;
   align-items: center;
-  border-radius: 5px;
-
-  &:hover {
-    opacity: 0.8;
-  }
 
   &:checked {
     @include standard-transition();
@@ -146,6 +147,18 @@ select, #{$input-checkbox}, #{$input-color}, #{$input-text}, #{$input-submit}, .
 
 .download > div {
   @include download-element-background();
+}
+
+.file-name > input {
+  width: 65%;
+}
+
+.file-type > select {
+  width: 35%;
+}
+
+.file-name, .file-type {
+  align-items: center;
 }
 
 .pixel-color {
@@ -206,6 +219,13 @@ select, #{$input-checkbox}, #{$input-color}, #{$input-text}, #{$input-submit}, .
   }
 }
 
+.download > .submit {
+  justify-content: center;
+  input {
+    height: 40px;
+  }
+}
+
 @media only screen and (max-width: $medium-device-width) {
   body {
     @include same-font-size-and-line-height(15px);
@@ -255,6 +275,12 @@ select, #{$input-checkbox}, #{$input-color}, #{$input-text}, #{$input-submit}, .
       label {
         margin-bottom: 5px;
       }
+    }
+  }
+
+  .download > .submit {
+    input {
+      height: 30px;
     }
   }
 }
