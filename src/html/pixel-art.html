@@ -19,93 +19,70 @@
     <link rel="stylesheet" href="../scss/styles.css">
 </head>
 <body>
-<div class="container website-center">
-    <div class="row">
-        <div class="col-12">
-            <section id="introduction">
-                <div class="container">
-                    <div class="row">
-                        <h1>Pixel Art</h1>
-                        <p>Auf dieser Webseite kannst du deine eigene Pixelkunstwerte erstellen!</p>
-                    </div>
-                </div>
-            </section>
-            <section id="tips">
-                <div class="container">
-                    <div class="row">
-                        <h2>Tipps</h2>
-                        <p>Falls die Pixel zu klein oder zu groß sind, dann kannst in deinem Browser hinein- bzw. hinauszoomen und anschließend alle Pixel zurücksetzen.</p>
-                    </div>
-                </div>
-            </section>
-            <form action="javascript:makeScreenshotOfPixelPicture()">
-                <section id="tools">
-                    <h2>Werkzeuge, um dein Bild zu erstellen</h2>
-                    <div class="container">
-                        <div class="row">
-                            <div class="grid-size-container">
-                                <div class="grid-size">
-                                    <label for="gridSize">Welche quadratische Pixelgröße soll dein Bild haben?</label>
-                                    <select id="gridSize" name="gridSize" onchange="resetGrid()">
-                                        <script>generateGridSizeOptions();</script>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="tools">
-                                <div class="col-md-6 pixel-color">
-                                    <label for="pixelColor">Mit welcher Farbe möchtest du färben?</label>
-                                    <input type="color" id="pixelColor" name="pixelColor" value="#ff0000">
-                                </div>
-                                <div class="col-md-6 fill">
-                                    <label for="fill">Möchtest du deine benachbarten Pixel mit den angeklickten Pixel im Bild färben?</label>
-                                    <input type="checkbox" id="fill" name="fill" onchange="changeTool()"/>
-                                </div>
-                            </div>
-                            <div class="reset-container">
-                                <div class="reset">
-                                    <label for="reset">Ich möchte alle Pixel zurücksetzen</label>
-                                    <input type="button" id="reset" name="reset" value="Zurücksetzen"
-                                           onclick="resetGrid()"/>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <section id="introduction">
+                    <h1>Pixel Art</h1>
+                    <p>Auf dieser Webseite kannst du deine eigene Pixelkunstwerte erstellen!</p>
                 </section>
-                <section id="createPicture">
-                    <div class="container">
-                        <div class="row">
-                            <div id="picture">
-                                <h2>Dein Kunstwerk erstellen</h2>
-                                <div id="gridContainer" class="grid-container">
-                                    <div id="grid" class="grid">
-                                        <script>generateGrid();</script>
-                                    </div>
+                <section id="tips">
+                    <h2>Tipps</h2>
+                    <p>Falls die Pixel zu klein oder zu groß sind, dann kannst in deinem Browser hinein- bzw. hinauszoomen und anschließend alle Pixel zurücksetzen.</p>
+                </section>
+                <form action="javascript:makeScreenshotOfPixelPicture()">
+                    <section id="tools">
+                        <h2>Werkzeuge, um dein Bild zu erstellen</h2>
+                        <div class="grid-size-container">
+                            <div class="grid-size">
+                                <label for="gridSize">Welche quadratische Pixelgröße soll dein Bild haben?</label>
+                                <select id="gridSize" name="gridSize" onchange="resetGrid()">
+                                    <script>generateGridSizeOptions();</script>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="tools">
+                            <div class="col-md-5 pixel-color">
+                                <label for="pixelColor">Mit welcher Farbe möchtest du färben?</label>
+                                <input type="color" id="pixelColor" name="pixelColor" value="#ff0000">
+                            </div>
+                            <div class="col-md-5 fill">
+                                <label for="fill">Möchtest du deine benachbarten Pixel mit den angeklickten Pixel im Bild färben?</label>
+                                <input type="checkbox" id="fill" name="fill" onchange="changeTool()"/>
+                            </div>
+                        </div>
+                        <div class="reset">
+                            <label for="reset">Ich möchte alle Pixel zurücksetzen</label>
+                            <input type="button" id="reset" name="reset" value="Zurücksetzen" onclick="resetGrid()"/>
+                        </div>
+                    </section>
+                    <section id="createPicture">
+                        <div id="picture">
+                            <h2>Dein Kunstwerk erstellen</h2>
+                            <div id="gridContainer" class="grid-container">
+                                <div id="grid" class="grid">
+                                    <script>generateGrid();</script>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="container">
-                        <div class="row">
-                            <div id="download" class="download">
-                                <div class="col-md-5">
-                                    <label for="fileName">Gebe den Dateinamen für dein Bild ein</label>
-                                    <input type="text" id="fileName" name="fileName" required/>
-                                </div>
-                                <div class="col-md-5">
-                                    <label for="fileType">Welcher Dateityp soll verwendet werden?</label>
-                                    <select id="fileType" name="fileType">
-                                        <script>generateFileTypeOptions();</script>
-                                    </select>
-                                </div>
-                                <div class="col-md-2">
-                                    <input type="submit" value="Bild herunterladen"/>
-                                </div>
+                        <div id="download" class="download">
+                            <div class="col-md-4">
+                                <label for="fileName">Gebe den Dateinamen für dein Bild ein</label>
+                                <input type="text" id="fileName" name="fileName" required/>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="fileType">Welcher Dateityp soll verwendet werden?</label>
+                                <select id="fileType" name="fileType">
+                                    <script>generateFileTypeOptions();</script>
+                                </select>
+                            </div>
+                            <div class="col-md-2">
+                                <input type="submit" value="Bild herunterladen"/>
                             </div>
                         </div>
-                    </div>
-                </section>            </form>
+                    </section>                </form>
+            </div>
         </div>
     </div>
-</div>
 </body>
 </html>

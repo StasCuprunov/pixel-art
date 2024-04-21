@@ -1,32 +1,25 @@
 <section id="tools">
     <h2>{{TOOLS.title}}</h2>
-    <div class="container">
-        <div class="row">
-            <div class="grid-size-container">
-                <div class="grid-size">
-                    <label for="gridSize">{{TOOLS.gridSize.label}}</label>
-                    <select id="gridSize" name="gridSize" onchange="resetGrid()">
-                        <script>generateGridSizeOptions();</script>
-                    </select>
-                </div>
-            </div>
-            <div class="tools">
-                <div class="col-md-6 pixel-color">
-                    <label for="pixelColor">{{TOOLS.pixelColor.label}}</label>
-                    <input type="color" id="pixelColor" name="pixelColor" value="#ff0000">
-                </div>
-                <div class="col-md-6 fill">
-                    <label for="fill">{{TOOLS.fill.label}}</label>
-                    <input type="checkbox" id="fill" name="fill" onchange="changeTool()"/>
-                </div>
-            </div>
-            <div class="reset-container">
-                <div class="reset">
-                    <label for="reset">{{TOOLS.reset.label}}</label>
-                    <input type="button" id="reset" name="reset" value="{{TOOLS.reset.buttonText}}"
-                           onclick="resetGrid()"/>
-                </div>
-            </div>
+    <div class="grid-size-container">
+        <div class="grid-size">
+            <label for="gridSize">{{TOOLS.gridSize.label}}</label>
+            <select id="gridSize" name="gridSize" onchange="resetGrid()">
+                <script>generateGridSizeOptions();</script>
+            </select>
         </div>
+    </div>
+    <div class="tools">
+        <div class="col-md-5 pixel-color">
+            <label for="pixelColor">{{TOOLS.pixelColor.label}}</label>
+            <input type="color" id="pixelColor" name="pixelColor" value="#ff0000">
+        </div>
+        <div class="col-md-5 fill">
+            <label for="fill">{{TOOLS.fill.label}}</label>
+            <input type="checkbox" id="fill" name="fill" onchange="changeTool()"/>
+        </div>
+    </div>
+    <div class="reset">
+        <label for="reset">{{TOOLS.reset.label}}</label>
+        <input type="button" id="reset" name="reset" value="{{TOOLS.reset.buttonText}}" onclick="resetGrid()"/>
     </div>
 </section>
