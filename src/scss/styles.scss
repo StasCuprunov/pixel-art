@@ -161,12 +161,28 @@ select, #{$input-checkbox}, #{$input-color}, #{$input-text}, .reset > input {
 }
 
 .pixel-color {
+
   input {
     @include standard-transition();
     align-self: center;
     border: none;
     padding: 0;
+    height: 25px;
+    width: 50px;
+
+    &::-webkit-color-swatch-wrapper {
+      padding: 0;
+    }
+
+    &::-webkit-color-swatch {
+      border: $default-pixel-border;
+      border-radius: 5px;
+    }
   }
+}
+
+.pixel-color > label {
+  margin-bottom: 20px;
 }
 
 .fill {
@@ -260,10 +276,6 @@ select, #{$input-checkbox}, #{$input-color}, #{$input-text}, .reset > input {
 
   .grid-size, .reset {
     @include tools-element-background();
-  }
-
-  .fill > input {
-    @include same-height-and-width(20px);
   }
 
   .tools, .download {
