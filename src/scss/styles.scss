@@ -11,6 +11,7 @@ $red: #ff0015;
 
 $beige: #ffdd99;
 $light-beige: #fff7e5;
+
 $light-blue: #99bbff;
 $light-purple: #dd99ff;
 
@@ -64,6 +65,17 @@ $input-text: input-access("text");
   }
 }
 
+@mixin button {
+  @include input-style();
+  padding: 10px;
+}
+
+@mixin button-small-device() {
+  @include input-style();
+  height: 30px;
+  padding: 5px;
+}
+
 @mixin deactivate-default-styles() {
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -98,7 +110,11 @@ h2 {
   @include same-font-size-and-line-height(40px);
 }
 
-h1, h2 {
+h3 {
+  @include same-font-size-and-line-height(30px);
+}
+
+h1, h2, h3 {
   font-weight: 300;
   margin-bottom: 10px;
 }
@@ -111,7 +127,7 @@ label {
   pointer-events: none;
 }
 
-select, #{$input-checkbox}, #{$input-color}, #{$input-text}, .reset > input {
+select, #{$input-checkbox}, #{$input-color}, #{$input-text} {
   @include input-style();
 }
 
@@ -153,7 +169,7 @@ select, #{$input-checkbox}, #{$input-color}, #{$input-text}, .reset > input {
 }
 
 .file-type > select {
-  width: 35%;
+  width: 40%;
 }
 
 .file-name, .file-type {
@@ -236,15 +252,58 @@ select, #{$input-checkbox}, #{$input-color}, #{$input-text}, .reset > input {
 
 .download > .submit {
   justify-content: center;
+}
+
+.reset > button, .download > .submit > button {
+  @include button();
+}
+
+.download > .submit > button {
+  align-self: center;
+}
+
+.download > .submit > button:after {
+  @include add-font-awesome-icon-solid-as-content($fa-var-file-arrow-down);
+}
+
+.reset > button:after, .modal-reset > .reset-button:after {
+  @include add-font-awesome-icon-solid-as-content($fa-var-arrow-rotate-left);
+  margin-left: 5px;
+}
+
+#modalReset {
+  position: fixed;
+  left: 0;
+  top: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  width: 100%;
+  height: 100%;
+}
+
+.modal-reset {
+  background-color: $light-beige;
+  margin: 100px 100px 0 100px;
+  border-radius: 5px;
+  padding: 10px;
+
+  p {
+    margin-bottom: 10px;
+  }
 
   button {
     @include input-style();
-    align-self: center;
+    @include standard-transition();
     padding: 10px;
 
-    &:after {
-      @include add-font-awesome-icon-solid-as-content($fa-var-file-arrow-down);
+    &:hover {
+      @include standard-transition();
     }
+  }
+
+  .reset-button:hover {
+    background-color: $red;
+    border-color: $red;
+    color: $light-beige;
   }
 }
 
@@ -266,7 +325,11 @@ select, #{$input-checkbox}, #{$input-color}, #{$input-text}, .reset > input {
     @include same-font-size-and-line-height(30px);
   }
 
-  h1, h2 {
+  h3 {
+    @include same-font-size-and-line-height(22px);
+  }
+
+  h1, h2, h3 {
     margin-bottom: 5px;
   }
 
@@ -284,7 +347,6 @@ select, #{$input-checkbox}, #{$input-color}, #{$input-text}, .reset > input {
 
     div {
       margin-bottom: 10px;
-      padding: 5px;
 
       &:last-child {
         margin-bottom: 0;
@@ -296,18 +358,43 @@ select, #{$input-checkbox}, #{$input-color}, #{$input-text}, .reset > input {
     }
   }
 
-  .download > .submit {
-    button {
-      display: flex;
-      height: 30px;
-      align-items: center;
-      padding: 5px;
+  .reset, .tools > div, .download > div, .modal-reset {
+    padding: 5px;
+  }
 
-      &:after {
-        margin-left: 5px;
-      }
+  .reset {
+    display: flex;
+    flex-direction: column;
+
+    label {
+      margin-bottom: 5px;
+    }
+
+    button {
+      align-self: center;
     }
   }
 
-}
+  .reset > button, .download > .submit > button {
+    @include button-small-device();
 
+    &:after {
+      margin-left: 5px;
+    }
+  }
+
+  .modal-reset {
+    margin: 50px 50px 0 50px;
+
+    p {
+      margin-bottom: 5px;
+    }
+
+    button {
+      @include button-small-device();
+      padding: 5px;
+    }
+
+  }
+
+}

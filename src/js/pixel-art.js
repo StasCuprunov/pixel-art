@@ -9,6 +9,7 @@ function generateGridSizeOptions() {
         option.innerHTML = size + " x " + size;
         gridSizeContainer.appendChild(option);
     });
+    setLocalStorageGridSizeKey();
 }
 
 function generateGrid() {
@@ -39,11 +40,24 @@ function generateGrid() {
     });
 }
 
-function resetGrid() {
-    document.getElementById(FILL_ID).checked = false;
-    setDisableForPixelColor(false);
-    removeGrid();
-    generateGrid();
+function onChangeGridSize() {
+    triggerModalReset();
+    setLocalStorageGridSizeKey();
+}
+
+function triggerModalReset() {
+    if (isMinimumOnePixelColored()) {
+        document.getElementById(MODAL_RESET_ID).hidden = false;
+    }
+    else {
+        resetGrid();
+    }
+}
+
+function triggerResetButtonFromModal() {
+    resetGrid();
+    hideModalReset();
+    setLocalStorageGridSizeKey();
 }
 
 function changeTool() {
@@ -362,4 +376,38 @@ function firstColumnNumber() {
 
 function lastColumnNumber() {
     return sizeOfGrid() - 1;
+}
+
+function setLocalStorageGridSizeKey() {
+    if (document.getElementById(MODAL_RESET_ID).hidden) {
+        localStorage.setItem(GRID_SIZE_OLD_VALUE, document.getElementById(GRID_SIZE_ID).value);
+    }
+}
+
+function hideModalReset() {
+    document.getElementById(MODAL_RESET_ID).hidden = true;
+}
+
+function cancelModalReset() {
+    document.getElementById(GRID_SIZE_ID).value = localStorage.getItem(GRID_SIZE_OLD_VALUE);
+    hideModalReset();
+}
+
+function resetGrid() {
+    document.getElementById(FILL_ID).checked = false;
+    setDisableForPixelColor(false);
+    removeGrid();
+    generateGrid();
+}
+
+function isMinimumOnePixelColored() {
+    let listOfPixels = document.getElementById(GRID_ID).querySelectorAll(".pixel");
+
+    for (let index = 0; index < listOfPixels.length; index++) {
+        let backgroundColor = listOfPixels[index].style.backgroundColor;
+        if (backgroundColor !== "" && backgroundColor !== "rgb(255, 255, 255)") {
+            return true;
+        }
+    }
+    return false;
 }

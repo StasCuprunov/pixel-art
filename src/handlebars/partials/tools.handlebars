@@ -3,7 +3,7 @@
     <div class="grid-size-container">
         <div class="grid-size">
             <label for="gridSize">{{TOOLS.gridSize.label}}</label>
-            <select id="gridSize" name="gridSize" onchange="resetGrid()">
+            <select id="gridSize" name="gridSize" onchange="onChangeGridSize()">
                 <script>generateGridSizeOptions();</script>
             </select>
         </div>
@@ -18,8 +18,10 @@
             <input type="checkbox" id="fill" name="fill" onchange="changeTool()"/>
         </div>
     </div>
+    {{> modalForResetPixelArt}}
+
     <div class="reset">
         <label for="reset">{{TOOLS.reset.label}}</label>
-        <input type="button" id="reset" name="reset" value="{{TOOLS.reset.buttonText}}" onclick="resetGrid()"/>
+        <button type="button" id="reset" name="reset" onclick="triggerModalReset()">{{TOOLS.reset.buttonText}}</button>
     </div>
 </section>

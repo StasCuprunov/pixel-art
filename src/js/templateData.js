@@ -43,13 +43,25 @@ const CREATE_PICTURE = {
     }
 }
 
+const MODAL_RESET = {
+    "title": "Möchtest du wirklich alle Pixel zurücksetzen?",
+    "paragraph": "Alle gefärbten Pixeln werden dabei zurückgesetzt.",
+    "reset": {
+        "buttonText" : "Zurücksetzen"
+    },
+    "cancel": {
+        "buttonText": "Abbrechen"
+    }
+}
+
 function templateData() {
     return {
         HEAD,
         INTRODUCTION,
         TIPS,
         TOOLS,
-        CREATE_PICTURE
+        CREATE_PICTURE,
+        MODAL_RESET
     };
 }
 

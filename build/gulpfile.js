@@ -1,10 +1,11 @@
-let gulp= require("gulp");
-let handlebars= require("gulp-compile-handlebars");
-let rename= require("gulp-rename");
+const gulp= require("gulp");
+const handlebars= require("gulp-compile-handlebars");
+const rename= require("gulp-rename");
+const {readdir} = require("node:fs/promises");
 
-gulp.task("default", function () {
+gulp.task("default", async function () {
     let options = {
-        batch : ["../src/handlebars/partials"],
+        batch: await findAllHandleBarsDirectories(),
     };
 
     let templateData = require("../src/js/templateData.js");
@@ -14,3 +15,24 @@ gulp.task("default", function () {
         .pipe(rename("pixel-art.html"))
         .pipe(gulp.dest("../src/html"));
 });
+
+function findAllHandleBarsDirectories() {
+    return findAllSubDirectories("../src/handlebars");
+}
+
+async function findAllSubDirectories(directoryPath) {
+    let prefixDirectoryPath = directoryPath + "/";
+    let listOfDirectories = [];
+    let allSuffixPaths = await readdir(directoryPath, {recursive: true});
+
+    allSuffixPaths.forEach((path) => {
+        if (!isFilePath(path)) {
+            listOfDirectories.push(prefixDirectoryPath + path);
+        }
+    });
+    return listOfDirectories;
+}
+
+function isFilePath(path) {
+    return path.includes(".");
+}

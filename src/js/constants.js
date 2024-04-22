@@ -6,9 +6,12 @@ const GRID_CONTAINER_ID = "gridContainer";
 const GRID_SIZE_ID = "gridSize";
 const GRID_ID = "grid";
 const INTRODUCTION_ID = "introduction";
+const MODAL_RESET_ID = "modalReset";
 const PICTURE_ID = "picture";
 const PIXEL_COLOR_ID = "pixelColor";
 const PREFIX_PIXEL_ID = "pixel-";
 const TIPS_ID = "tips";
 const TOOLS_ID = "tools";
+
+const GRID_SIZE_OLD_VALUE = "gridSizeOldValue";
 
