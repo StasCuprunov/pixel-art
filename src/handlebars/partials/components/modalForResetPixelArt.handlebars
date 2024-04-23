@@ -2,10 +2,12 @@
     <div class="modal-reset">
         <h3>{{MODAL_RESET.title}}</h3>
         <p>{{MODAL_RESET.paragraph}}</p>
-        <button type="button" class="reset-button" onclick="triggerResetButtonFromModal()">
-            {{MODAL_RESET.reset.buttonText}}
-        </button>
-        <button type="button" class="cancel-button" onclick="cancelModalReset()">{{MODAL_RESET.cancel.buttonText}}
-        </button>
+        <div class="buttons">
+            <button type="button" class="reset-button" onclick="triggerResetButtonFromModal()">
+                {{MODAL_RESET.reset.buttonText}}
+            </button>
+            <button type="button" class="cancel-button" onclick="cancelModalReset()">{{MODAL_RESET.cancel.buttonText}}
+            </button>
+        </div>
     </div>
 </div>

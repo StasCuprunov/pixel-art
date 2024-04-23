@@ -293,6 +293,11 @@ select, #{$input-checkbox}, #{$input-color}, #{$input-text} {
   }
 }
 
+.grid-size > select {
+  width: 35%;
+  align-self: center;
+}
+
 .download > .submit {
   justify-content: center;
 }
@@ -453,6 +458,22 @@ select, #{$input-checkbox}, #{$input-color}, #{$input-text} {
     input {
       margin-right: 5px;
       margin-left: 5px;
+    }
+  }
+}
+
+@media only screen and (max-width: $small-device-width) {
+  .modal-reset > .buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    button {
+      margin-bottom: 5px;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
     }
   }
 }
