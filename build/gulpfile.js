@@ -1,38 +1,24 @@
+let createHtmlConfig = require("./configuration").createHtmlConfig;
+let findAllHandleBarsDirectories = require("./find_sub_directories").findAllHandleBarsDirectories;
+
 const gulp= require("gulp");
 const handlebars= require("gulp-compile-handlebars");
 const rename= require("gulp-rename");
-const {readdir} = require("node:fs/promises");
 
-gulp.task("default", async function () {
+const GULP_TASK_CREATE_HTML = "create-html";
+
+gulp.task(GULP_TASK_CREATE_HTML, async function() {
     let options = {
         batch: await findAllHandleBarsDirectories(),
     };
 
-    let templateData = require("../src/data/templateData.js");
+    let templateData = require(createHtmlConfig.templateDataPath);
 
-    return gulp.src("../src/handlebars/index.handlebars")
+    return gulp.src(createHtmlConfig.indexHandlebarsPath)
         .pipe(handlebars(templateData, options))
-        .pipe(rename("index.html"))
-        .pipe(gulp.dest("../src/html"));
+        .pipe(rename(createHtmlConfig.htmlFileName))
+        .pipe(gulp.dest(createHtmlConfig.srcPath));
 });
 
-function findAllHandleBarsDirectories() {
-    return findAllSubDirectories("../src/handlebars");
-}
+gulp.task("default",  gulp.series(GULP_TASK_CREATE_HTML));
 
-async function findAllSubDirectories(directoryPath) {
-    let prefixDirectoryPath = directoryPath + "/";
-    let listOfDirectories = [];
-    let allSuffixPaths = await readdir(directoryPath, {recursive: true});
-
-    allSuffixPaths.forEach((path) => {
-        if (!isFilePath(path)) {
-            listOfDirectories.push(prefixDirectoryPath + path);
-        }
-    });
-    return listOfDirectories;
-}
-
-function isFilePath(path) {
-    return path.includes(".");
-}
