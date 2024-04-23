@@ -1,19 +1,19 @@
-const HEAD = {
+let head = {
     "title": "Pixel Art"
 }
 
-const INTRODUCTION = {
+let introduction = {
     "title": "Pixel Art",
     "paragraph": "Auf dieser Webseite kannst du deine eigene Pixelkunstwerte erstellen!"
 };
 
-const TIPS = {
+let tips = {
     "title": "Tipps",
     "paragraph": "Falls die Pixel zu klein oder zu groß sind, dann kannst in deinem Browser hinein- bzw. hinauszoomen " +
         "und anschließend alle Pixel zurücksetzen."
 }
 
-const TOOLS = {
+let tools = {
   "title" : "Werkzeuge, um dein Bild zu erstellen",
     "gridSize" : {
       "label": "Welche quadratische Pixelgröße soll dein Bild haben?"
@@ -33,7 +33,7 @@ const TOOLS = {
     }
 };
 
-const CREATE_PICTURE = {
+let createPicture = {
     "title": "Dein Kunstwerk erstellen",
     "download": {
         "fileName": {
@@ -46,7 +46,7 @@ const CREATE_PICTURE = {
     }
 }
 
-const MODAL_RESET = {
+let modalReset = {
     "title": "Möchtest du wirklich alle Pixel zurücksetzen?",
     "paragraph": "Alle gefärbten Pixeln werden dabei zurückgesetzt.",
     "reset": {
@@ -59,12 +59,12 @@ const MODAL_RESET = {
 
 function templateData() {
     return {
-        HEAD,
-        INTRODUCTION,
-        TIPS,
-        TOOLS,
-        CREATE_PICTURE,
-        MODAL_RESET
+        head,
+        introduction,
+        tips,
+        tools,
+        createPicture,
+        modalReset
     };
 }
 

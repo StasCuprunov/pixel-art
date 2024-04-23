@@ -1,6 +1,6 @@
 <section id="createPicture">
     <div id="picture">
-        <h2>{{CREATE_PICTURE.title}}</h2>
+        <h2>{{createPicture.title}}</h2>
         <div id="gridContainer" class="grid-container">
             <div id="grid" class="grid">
                 <script>generateGrid();</script>
@@ -9,18 +9,18 @@
     </div>
     <div id="download" class="download">
         <div class="col-md-3 file-name">
-            <label for="fileName">{{CREATE_PICTURE.download.fileName.label}}</label>
+            <label for="fileName">{{createPicture.download.fileName.label}}</label>
             <input type="text" id="fileName" name="fileName" required/>
         </div>
         <div class="col-md-3 file-type">
-            <label for="fileType">{{CREATE_PICTURE.download.fileType.label}}</label>
+            <label for="fileType">{{createPicture.download.fileType.label}}</label>
             <select id="fileType" name="fileType">
                 <script>generateFileTypeOptions();</script>
             </select>
         </div>
         <div class="col-md-4 col-lg-3 submit">
             <button type="submit">
-                {{CREATE_PICTURE.download.submitText}}
+                {{createPicture.download.submitText}}
             </button>
         </div>
     </div>

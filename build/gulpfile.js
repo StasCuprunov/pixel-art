@@ -8,11 +8,11 @@ gulp.task("default", async function () {
         batch: await findAllHandleBarsDirectories(),
     };
 
-    let templateData = require("../src/js/templateData.js");
+    let templateData = require("../src/data/templateData.js");
 
-    return gulp.src("../src/handlebars/pixel-art.handlebars")
+    return gulp.src("../src/handlebars/index.handlebars")
         .pipe(handlebars(templateData, options))
-        .pipe(rename("pixel-art.html"))
+        .pipe(rename("index.html"))
         .pipe(gulp.dest("../src/html"));
 });
 

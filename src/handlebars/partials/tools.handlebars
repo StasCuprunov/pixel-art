@@ -1,14 +1,14 @@
 <section id="tools">
-    <h2>{{TOOLS.title}}</h2>
+    <h2>{{tools.title}}</h2>
     <div class="start-configuration">
         <div class="col-md-5 grid-size">
-            <label for="gridSize">{{TOOLS.gridSize.label}}</label>
+            <label for="gridSize">{{tools.gridSize.label}}</label>
             <select id="gridSize" name="gridSize" onchange="onChangeGridSize()">
                 <script>generateGridSizeOptions();</script>
             </select>
         </div>
         <div class="col-md-5 adjust-pixel-size">
-            <label for="adjustPixelSizeInput">{{TOOLS.adjustPixelSize.label}}</label>
+            <label for="adjustPixelSizeInput">{{tools.adjustPixelSize.label}}</label>
             <div id="adjustPixelSizeRange" class="adjust-pixel-size-range">
                 <span class="min"></span>
                 <input type="range" id="adjustPixelSizeInput" name="adjustPixelSize" onchange="adaptPixelSizeFromGrid()">
@@ -19,18 +19,18 @@
     </div>
     <div class="tools">
         <div class="col-md-5 pixel-color">
-            <label for="pixelColor">{{TOOLS.pixelColor.label}}</label>
+            <label for="pixelColor">{{tools.pixelColor.label}}</label>
             <input type="color" id="pixelColor" name="pixelColor">
         </div>
         <div class="col-md-5 fill">
-            <label for="fill">{{TOOLS.fill.label}}</label>
+            <label for="fill">{{tools.fill.label}}</label>
             <input type="checkbox" id="fill" name="fill" onchange="changeTool()"/>
         </div>
     </div>
-    {{> modalForResetPixelArt}}
+    {{> modal_for_reset_pixel_art}}
 
     <div class="reset">
-        <label for="reset">{{TOOLS.reset.label}}</label>
-        <button type="button" id="reset" name="reset" onclick="triggerModalReset()">{{TOOLS.reset.buttonText}}</button>
+        <label for="reset">{{tools.reset.label}}</label>
+        <button type="button" id="reset" name="reset" onclick="triggerModalReset()">{{tools.reset.buttonText}}</button>
     </div>
 </section>
