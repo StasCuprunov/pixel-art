@@ -2,16 +2,17 @@
     <h2>{{tools.title}}</h2>
     <div class="start-configuration">
         <div class="col-md-5 grid-size">
-            <label for="gridSize">{{tools.gridSize.label}}</label>
-            <select id="gridSize" name="gridSize" onchange="onChangeGridSize()">
+            <label for="grid-size">{{tools.gridSize.label}}</label>
+            <select id="grid-size" name="grid-size" onchange="onChangeGridSize()">
                 <script>generateGridSizeOptions();</script>
             </select>
         </div>
         <div class="col-md-5 adjust-pixel-size">
-            <label for="adjustPixelSizeInput">{{tools.adjustPixelSize.label}}</label>
-            <div id="adjustPixelSizeRange" class="adjust-pixel-size-range">
+            <label for="adjust-pixel-size-input">{{tools.adjustPixelSize.label}}</label>
+            <div id="adjust-pixel-size-range" class="adjust-pixel-size-range">
                 <span class="min"></span>
-                <input type="range" id="adjustPixelSizeInput" name="adjustPixelSize" onchange="adaptPixelSizeFromGrid()">
+                <input type="range" id="adjust-pixel-size-input" name="adjust-pixel-size-input"
+                       onchange="adaptPixelSizeFromGrid()">
                 <span class="max"></span>
             </div>
             <script>initializeAdjustPixelSize()</script>
@@ -19,8 +20,8 @@
     </div>
     <div class="tools">
         <div class="col-md-5 pixel-color">
-            <label for="pixelColor">{{tools.pixelColor.label}}</label>
-            <input type="color" id="pixelColor" name="pixelColor">
+            <label for="pixel-color">{{tools.pixelColor.label}}</label>
+            <input type="color" id="pixel-color" name="pixel-color">
         </div>
         <div class="col-md-5 fill">
             <label for="fill">{{tools.fill.label}}</label>
