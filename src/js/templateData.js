@@ -18,6 +18,9 @@ const TOOLS = {
     "gridSize" : {
       "label": "Welche quadratische Pixelgröße soll dein Bild haben?"
     },
+    "adjustPixelSize": {
+      "label": "Wie groß sollen die einzelne Pixeln in Einheiten sein?"
+    },
     "pixelColor": {
       "label": "Mit welcher Farbe möchtest du färben?"
     },

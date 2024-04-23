@@ -1,11 +1,20 @@
 <section id="tools">
     <h2>{{TOOLS.title}}</h2>
-    <div class="grid-size-container">
-        <div class="grid-size">
+    <div class="start-configuration">
+        <div class="col-md-5 grid-size">
             <label for="gridSize">{{TOOLS.gridSize.label}}</label>
             <select id="gridSize" name="gridSize" onchange="onChangeGridSize()">
                 <script>generateGridSizeOptions();</script>
             </select>
+        </div>
+        <div class="col-md-5 adjust-pixel-size">
+            <label for="adjustPixelSizeInput">{{TOOLS.adjustPixelSize.label}}</label>
+            <div id="adjustPixelSizeRange" class="adjust-pixel-size-range">
+                <span class="min"></span>
+                <input type="range" id="adjustPixelSizeInput" name="adjustPixelSize" onchange="adaptPixelSizeFromGrid()">
+                <span class="max"></span>
+            </div>
+            <script>initializeAdjustPixelSize()</script>
         </div>
     </div>
     <div class="tools">

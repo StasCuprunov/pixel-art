@@ -25,6 +25,7 @@ $default-pixel-border: 1px solid $black;
 $input-checkbox: input-access("checkbox");
 $input-color: input-access("color");
 $input-text: input-access("text");
+$input-range: input-access("range");
 
 @mixin same-font-size-and-line-height($size) {
   font-size: $size;
@@ -78,6 +79,16 @@ $input-text: input-access("text");
 
 @mixin deactivate-default-styles() {
   -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+@mixin deactivate-webkit-appearance() {
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+@mixin deactivate-moz-appearance() {
   -moz-appearance: none;
   appearance: none;
 }
@@ -148,6 +159,28 @@ select, #{$input-checkbox}, #{$input-color}, #{$input-text} {
   @include add-font-awesome-icon-solid-as-content($fa-var-check);
 }
 
+#{$input-range} {
+  @include deactivate-default-styles();
+  align-self: center;
+  border-radius: 5px;
+  height: 5px;
+  width: 40%;
+  background-color: $light-beige;
+  cursor: pointer;
+
+  &::-webkit-slider-thumb {
+    @include deactivate-webkit-appearance();
+    background-color: $beige;
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+
+    &:hover {
+      opacity: 0.95;
+    }
+  }
+}
+
 #tools > div {
   margin-bottom: 10px;
 
@@ -156,8 +189,18 @@ select, #{$input-checkbox}, #{$input-color}, #{$input-text} {
   }
 }
 
-.tools > div {
+.start-configuration > div, .tools > div, {
   @include tools-element-background();
+}
+
+.adjust-pixel-size-range {
+  display: flex;
+  justify-content: center;
+
+  input {
+    margin-right: 10px;
+    margin-left: 10px;
+  }
 }
 
 .download > div {
@@ -234,11 +277,11 @@ select, #{$input-checkbox}, #{$input-color}, #{$input-text} {
   border-right: $default-pixel-border;
 }
 
-.tools, .download {
+.start-configuration, .tools, .download {
   display: flex;
   justify-content: space-between;
 
-  div {
+   > div {
     display: flex;
     flex-direction: column;
     padding: 10px;
@@ -333,6 +376,15 @@ select, #{$input-checkbox}, #{$input-color}, #{$input-text} {
     margin-bottom: 5px;
   }
 
+  #{$input-range} {
+    height: 2px;
+
+    &::-webkit-slider-thumb {
+      height: 15px;
+      width: 15px;
+    }
+  }
+
   .grid-container {
     margin-bottom: 20px;
   }
@@ -341,11 +393,11 @@ select, #{$input-checkbox}, #{$input-color}, #{$input-text} {
     @include tools-element-background();
   }
 
-  .tools, .download {
+  .start-configuration, .tools, .download {
     flex-direction: column;
     align-items: center;
 
-    div {
+    > div {
       margin-bottom: 10px;
 
       &:last-child {
@@ -358,7 +410,7 @@ select, #{$input-checkbox}, #{$input-color}, #{$input-text} {
     }
   }
 
-  .reset, .tools > div, .download > div, .modal-reset {
+  .reset, .start-configuration > div, .tools > div, .download > div, .modal-reset {
     padding: 5px;
   }
 
@@ -397,4 +449,10 @@ select, #{$input-checkbox}, #{$input-color}, #{$input-text} {
 
   }
 
+  .adjust-pixel-size-range {
+    input {
+      margin-right: 5px;
+      margin-left: 5px;
+    }
+  }
 }

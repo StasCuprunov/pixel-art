@@ -9,13 +9,15 @@ function generateGridSizeOptions() {
         option.innerHTML = size + " x " + size;
         gridSizeContainer.appendChild(option);
     });
-    setLocalStorageGridSizeKey();
+    $(document).ready(function () {
+       setLocalStorageGridSizeKey();
+    });
 }
 
 function generateGrid() {
     $(document).ready(function () {
         let grid = document.getElementById(GRID_ID);
-        let pixelLength = calculatePixelLength();
+        let pixelLength = calculateDefaultPixelLength();
         let gridRow;
 
         let indexBorder = getIndexBorder();
@@ -41,6 +43,7 @@ function generateGrid() {
 }
 
 function onChangeGridSize() {
+    localStorage.setItem(IS_TRIGGERED_BY_CHANGING_GRID_SIZE_KEY, true);
     triggerModalReset();
     setLocalStorageGridSizeKey();
 }
@@ -56,8 +59,8 @@ function triggerModalReset() {
 
 function triggerResetButtonFromModal() {
     resetGrid();
-    hideModalReset();
     setLocalStorageGridSizeKey();
+    hideModalReset();
 }
 
 function changeTool() {
@@ -98,6 +101,30 @@ function generateFileTypeOptions() {
         option.innerHTML = fileType.toUpperCase();
         fileTypeContainer.appendChild(option);
     });
+}
+
+function initializeAdjustPixelSize() {
+
+    $(document).ready(function () {
+        setMinimumFromAdjustPixelSize();
+        setMaximumFromAdjustPixelSize();
+        setDefaultValueFromAdjustPixelSize();
+    });
+}
+
+function adaptPixelSizeFromGrid() {
+    let newPixelSize = document.getElementById(ADJUST_PIXEL_SIZE_INPUT_ID).value;
+
+    let indexBorder = getIndexBorder();
+    for (let index = 0; index < indexBorder; index++) {
+        let id = generatePixelId(index);
+
+        let pixel = document.getElementById(id);
+
+        pixel.style.width = numberOfPixelsAsString(newPixelSize);
+        pixel.style.height = numberOfPixelsAsString(newPixelSize);
+    }
+
 }
 
 function submit() {
@@ -298,36 +325,16 @@ function onClickValueFillAdjacentPixels(id) {
     return "fillAdjacentPixels('" + id + "')";
 }
 
-function calculatePixelLength() {
-    let gridSize = sizeOfGrid();
-    let containerWidth = document.getElementById(GRID_CONTAINER_ID).offsetWidth;
-    let containerHeight = maximumHeightForPixelPicture();
-    let pictureSize = Math.min(containerWidth, containerHeight);
-
-    let sizeOfBorderPixels = gridSize + 1;
-    let availableWidthForPixels = pictureSize - sizeOfBorderPixels;
-
-    return Math.floor(availableWidthForPixels / gridSize);
+function calculateDefaultPixelLength() {
+    return Math.floor(getMaximumPixelSize() * 0.5);
 }
 
-function maximumHeightForPixelPicture() {
-    let windowHeight = window.innerHeight;
-
-    let introductionHeight = outerHeightFromElement(INTRODUCTION_ID);
-    let tipsHeight = outerHeightFromElement(TIPS_ID);
-    let toolsHeight = outerHeightFromElement(TOOLS_ID);
-    let createPictureTitleHeight = outerHeightFromElementWithTag(PICTURE_ID, "h2");
-    let downloadHeight = outerHeightFromElement(DOWNLOAD_ID)
-
-    return windowHeight - (introductionHeight + tipsHeight + toolsHeight + createPictureTitleHeight + downloadHeight);
+function getGridContainerWidth() {
+    return document.getElementById(GRID_CONTAINER_ID).offsetWidth;
 }
 
-function outerHeightFromElement(id) {
-    return $(jQueryId(id)).outerHeight(true);
-}
-
-function outerHeightFromElementWithTag(id, tag) {
-    return $(jQueryId(id)).find(tag).outerHeight(true);
+function getSizeOfBorderPixelsFromGrid() {
+    return sizeOfGrid() + 1;
 }
 
 function jQueryId(id) {
@@ -380,7 +387,7 @@ function lastColumnNumber() {
 
 function setLocalStorageGridSizeKey() {
     if (document.getElementById(MODAL_RESET_ID).hidden) {
-        localStorage.setItem(GRID_SIZE_OLD_VALUE, document.getElementById(GRID_SIZE_ID).value);
+        localStorage.setItem(GRID_SIZE_OLD_KEY, document.getElementById(GRID_SIZE_ID).value);
     }
 }
 
@@ -389,15 +396,23 @@ function hideModalReset() {
 }
 
 function cancelModalReset() {
-    document.getElementById(GRID_SIZE_ID).value = localStorage.getItem(GRID_SIZE_OLD_VALUE);
+    document.getElementById(GRID_SIZE_ID).value = localStorage.getItem(GRID_SIZE_OLD_KEY);
     hideModalReset();
 }
 
 function resetGrid() {
     document.getElementById(FILL_ID).checked = false;
     setDisableForPixelColor(false);
-    removeGrid();
-    generateGrid();
+
+    if (localStorage.getItem(IS_TRIGGERED_BY_CHANGING_GRID_SIZE_KEY) === "true") {
+        removeGrid();
+        generateGrid();
+        adjustPixelSizeInputAfterResetGrid();
+        localStorage.setItem(IS_TRIGGERED_BY_CHANGING_GRID_SIZE_KEY, "");
+    }
+    else {
+        colorAllPixelsToDefaultColor();
+    }
 }
 
 function isMinimumOnePixelColored() {
@@ -410,4 +425,46 @@ function isMinimumOnePixelColored() {
         }
     }
     return false;
+}
+
+function colorAllPixelsToDefaultColor() {
+    let listOfPixels = document.getElementById(GRID_ID).querySelectorAll(".pixel");
+
+    for (let index = 0; index < listOfPixels.length; index++) {
+        listOfPixels[index].style.backgroundColor = "#ffffff";
+
+    }
+}
+
+function getMaximumPixelSize() {
+    let availableWidthForPixels = getGridContainerWidth() - getSizeOfBorderPixelsFromGrid();
+    return Math.floor(availableWidthForPixels / sizeOfGrid());
+}
+
+function setMinimumFromAdjustPixelSize() {
+    let minimum = 2;
+    let adjustPixelSizeInput = document.getElementById(ADJUST_PIXEL_SIZE_INPUT_ID);
+    let adjustPixelSizeRange = document.getElementById(ADJUST_PIXEL_SIZE_RANGE_ID);
+
+    adjustPixelSizeInput.min = minimum;
+    adjustPixelSizeRange.querySelector(".min").innerText = minimum;
+}
+
+function setMaximumFromAdjustPixelSize() {
+    let maximum = getMaximumPixelSize();
+    let adjustPixelSizeInput = document.getElementById(ADJUST_PIXEL_SIZE_INPUT_ID);
+    let adjustPixelSizeRange = document.getElementById(ADJUST_PIXEL_SIZE_RANGE_ID);
+
+    adjustPixelSizeInput.max = maximum;
+    adjustPixelSizeRange.querySelector(".max").innerText = maximum;
+}
+
+function setDefaultValueFromAdjustPixelSize() {
+    let adjustPixelSizeInput = document.getElementById(ADJUST_PIXEL_SIZE_INPUT_ID);
+    adjustPixelSizeInput.value = calculateDefaultPixelLength();
+}
+
+function adjustPixelSizeInputAfterResetGrid() {
+    setMaximumFromAdjustPixelSize();
+    setDefaultValueFromAdjustPixelSize();
 }
