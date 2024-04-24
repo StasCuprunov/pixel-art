@@ -1,107 +1,6 @@
-@import "../../../node_modules/@fortawesome/fontawesome-free/scss/fontawesome";
-@import "../../../node_modules/@fortawesome/fontawesome-free/scss/solid";
-
-$small-device-width: 576px;
-$medium-device-width: 768px;
-$large-device-width: 992px;
-
-$black: #000000;
-$white: #ffffff;
-$red: #ff0015;
-
-$beige: #ffdd99;
-$light-beige: #fff7e5;
-
-$light-blue: #99bbff;
-$light-purple: #dd99ff;
-
-$default-pixel-color: $white;
-$default-pixel-border: 1px solid $black;
-
-@function input-access($type) {
-  @return "input[type="#{$type}"]";
-}
-
-$input-checkbox: input-access("checkbox");
-$input-color: input-access("color");
-$input-text: input-access("text");
-$input-range: input-access("range");
-
-@mixin same-font-size-and-line-height($size) {
-  font-size: $size;
-  line-height: $size;
-}
-
-@mixin same-height-and-width($size) {
-  height: $size;
-  width: $size;
-}
-
-@mixin same-margin-top-and-bottom($size) {
-  margin-top: $size;
-  margin-bottom: $size;
-}
-
-@mixin element-background($color) {
-  background-color: $color;
-  border-radius: 5px;
-}
-
-@mixin tools-element-background() {
-  @include element-background($light-blue);
-}
-
-@mixin download-element-background() {
-  @include element-background($light-purple);
-}
-
-@mixin input-style() {
-  background-color: $light-beige;
-  cursor: pointer;
-  border: $default-pixel-border;
-  border-radius: 5px;
-
-  &:hover {
-    opacity: 0.8;
-  }
-}
-
-@mixin button {
-  @include input-style();
-  padding: 10px;
-}
-
-@mixin button-small-device() {
-  @include input-style();
-  height: 30px;
-  padding: 5px;
-}
-
-@mixin deactivate-default-styles() {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-}
-
-@mixin deactivate-webkit-appearance() {
-  -webkit-appearance: none;
-  appearance: none;
-}
-
-@mixin deactivate-moz-appearance() {
-  -moz-appearance: none;
-  appearance: none;
-}
-
-@mixin add-font-awesome-icon-solid-as-content($icon) {
-  @extend %fa-icon;
-  @extend .fa-solid;
-  content: fa-content($icon);
-}
-
-@mixin standard-transition() {
-  transition-duration: 0.4s;
-}
+@import "mixins";
+@import "tags";
+@import "breakpoints";
 
 body {
   font-family: "Trebuchet MS", sans-serif;
@@ -144,13 +43,13 @@ select, #{$input-checkbox}, #{$input-color}, #{$input-text} {
 
 #{$input-checkbox} {
   @include deactivate-default-styles();
-  @include standard-transition();
+  @include default-transition();
   display: flex;
   justify-content: center;
   align-items: center;
 
   &:checked {
-    @include standard-transition();
+    @include default-transition();
     background-color: $red;
   }
 }
@@ -222,7 +121,7 @@ select, #{$input-checkbox}, #{$input-color}, #{$input-text} {
 .pixel-color {
 
   input {
-    @include standard-transition();
+    @include default-transition();
     align-self: center;
     border: none;
     padding: 0;
@@ -234,7 +133,7 @@ select, #{$input-checkbox}, #{$input-color}, #{$input-text} {
     }
 
     &::-webkit-color-swatch {
-      border: $default-pixel-border;
+      border: $default-border;
       border-radius: 5px;
     }
   }
@@ -264,17 +163,17 @@ select, #{$input-checkbox}, #{$input-color}, #{$input-text} {
 
 .pixel {
   background-color: $default-pixel-color;
-  border-top: $default-pixel-border;
-  border-left: $default-pixel-border;
+  border-top: $default-border;
+  border-left: $default-border;
   cursor: pointer;
 }
 
 .pixel.last-row {
-  border-bottom: $default-pixel-border;
+  border-bottom: $default-border;
 }
 
 .pixel.last-column {
-  border-right: $default-pixel-border;
+  border-right: $default-border;
 }
 
 .start-configuration, .tools, .download {
@@ -340,11 +239,11 @@ select, #{$input-checkbox}, #{$input-color}, #{$input-text} {
 
   button {
     @include input-style();
-    @include standard-transition();
+    @include default-transition();
     padding: 10px;
 
     &:hover {
-      @include standard-transition();
+      @include default-transition();
     }
   }
 
