@@ -44,7 +44,7 @@
                                 <div id="adjust-pixel-size-range" class="adjust-pixel-size-range">
                                     <span class="min"></span>
                                     <input type="range" id="adjust-pixel-size-input" name="adjust-pixel-size-input"
-                                        />
+                                        onchange="adaptPixelSizeFromGrid()"/>
                                     <span class="max"></span>
                                 </div>
                                 <script>initializeAdjustPixelSize()</script>
@@ -68,9 +68,9 @@
                                 <p>Alle gefärbten Pixeln werden dabei zurückgesetzt.</p>
                                 <div class="buttons">
                                     <button type="button"  
-                                        class="reset-button">Zurücksetzen</button>
+                                        class="reset-button"onclick="triggerResetButtonFromModal()">Zurücksetzen</button>
                                     <button type="button"  
-                                        class="cancel-button">Abbrechen</button>
+                                        class="cancel-button"onclick="cancelModalReset()">Abbrechen</button>
                                 </div>
                             </div>
                         </div>
