@@ -19,8 +19,8 @@
 }
 
 @mixin element-background($color) {
+  @include default-border-radius();
   background-color: $color;
-  border-radius: 5px;
 }
 
 @mixin tools-element-background() {
@@ -32,25 +32,14 @@
 }
 
 @mixin input-style() {
+  @include default-border-radius();
   background-color: $light-beige;
   cursor: pointer;
   border: $default-border;
-  border-radius: 5px;
 
   &:hover {
     opacity: 0.8;
   }
-}
-
-@mixin button {
-  @include input-style();
-  padding: 10px;
-}
-
-@mixin button-small-device() {
-  @include input-style();
-  height: 30px;
-  padding: 5px;
 }
 
 @mixin deactivate-default-styles() {
@@ -75,6 +64,41 @@
   content: fa-content($icon);
 }
 
+@mixin button {
+  @include input-style();
+  padding: 10px;
+}
+
+@mixin button-small-device() {
+  @include input-style();
+  height: 30px;
+  padding: 5px;
+}
+
 @mixin default-transition() {
   transition-duration: 0.4s;
+}
+
+@mixin default-border-radius() {
+  border-radius: 5px;
+}
+
+@mixin default-button-padding() {
+  padding: 10px;
+}
+
+@mixin default-button-padding-medium-device() {
+  padding: 5px;
+}
+
+@mixin default-container-padding() {
+  padding: 10px;
+}
+
+@mixin default-container-padding-medium-device() {
+  padding: 5px;
+}
+
+@mixin default-label-margin-bottom-medium-device() {
+  margin-bottom: 5px;
 }
