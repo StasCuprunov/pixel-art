@@ -2,17 +2,20 @@
     <h2>{{tools.title}}</h2>
     <div class="start-configuration">
         <div class="col-md-5 grid-size">
-            <label for="grid-size">{{tools.gridSize.label}}</label>
-            <select id="grid-size" name="grid-size" onchange="onChangeGridSize()">
-                <script>generateGridSizeOptions();</script>
-            </select>
+            {{> label labelText=tools.gridSize.label for="grid-size"}}
+
+            {{> select id="grid-size" name="grid-size" onChange="onChangeGridSize()"
+                    script="generateGridSizeOptions()"}}
+
         </div>
         <div class="col-md-5 adjust-pixel-size">
-            <label for="adjust-pixel-size-input">{{tools.adjustPixelSize.label}}</label>
+            {{> label labelText=tools.adjustPixelSize.label for="adjust-pixel-size-input"}}
+
             <div id="adjust-pixel-size-range" class="adjust-pixel-size-range">
                 <span class="min"></span>
-                <input type="range" id="adjust-pixel-size-input" name="adjust-pixel-size-input"
-                       onchange="adaptPixelSizeFromGrid()">
+                {{> input type="range" id="adjust-pixel-size-input" name="adjust-pixel-size-input"
+                        onchange="adaptPixelSizeFromGrid()"}}
+
                 <span class="max"></span>
             </div>
             <script>initializeAdjustPixelSize()</script>
@@ -20,18 +23,25 @@
     </div>
     <div class="tools">
         <div class="col-md-5 pixel-color">
-            <label for="pixel-color">{{tools.pixelColor.label}}</label>
-            <input type="color" id="pixel-color" name="pixel-color">
+            {{> label labelText=tools.pixelColor.label for="pixel-color"}}
+
+            {{> input type="color" id="pixel-color" name="pixel-color"}}
+
         </div>
         <div class="col-md-5 fill">
-            <label for="fill">{{tools.fill.label}}</label>
-            <input type="checkbox" id="fill" name="fill" onchange="changeTool()"/>
+            {{> label labelText=tools.fill.label for="fill"}}
+
+            {{> input type="checkbox" id="fill" name="fill" onChange="changeTool()"}}
+
         </div>
     </div>
     {{> modal_for_reset_pixel_art}}
 
     <div class="reset">
-        <label for="reset">{{tools.reset.label}}</label>
-        <button type="button" id="reset" name="reset" onclick="triggerModalReset()">{{tools.reset.buttonText}}</button>
+        {{> label labelText=tools.reset.label for="reset"}}
+
+        {{> button buttonText=tools.reset.buttonText type="button" id="reset" name="reset"
+                onClick="triggerModalReset()"}}
+
     </div>
 </section>

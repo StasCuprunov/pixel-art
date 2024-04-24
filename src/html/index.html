@@ -36,7 +36,7 @@
                             <div class="col-md-5 grid-size">
                                 <label for="grid-size">Welche quadratische Pixelgröße soll dein Bild haben?</label>
                                 <select id="grid-size" name="grid-size" onchange="onChangeGridSize()">
-                                    <script>generateGridSizeOptions();</script>
+                                        <script>generateGridSizeOptions();</script>
                                 </select>
                             </div>
                             <div class="col-md-5 adjust-pixel-size">
@@ -44,7 +44,7 @@
                                 <div id="adjust-pixel-size-range" class="adjust-pixel-size-range">
                                     <span class="min"></span>
                                     <input type="range" id="adjust-pixel-size-input" name="adjust-pixel-size-input"
-                                           onchange="adaptPixelSizeFromGrid()">
+                                        />
                                     <span class="max"></span>
                                 </div>
                                 <script>initializeAdjustPixelSize()</script>
@@ -53,11 +53,13 @@
                         <div class="tools">
                             <div class="col-md-5 pixel-color">
                                 <label for="pixel-color">Mit welcher Farbe möchtest du färben?</label>
-                                <input type="color" id="pixel-color" name="pixel-color">
+                                <input type="color" id="pixel-color" name="pixel-color"
+                                    />
                             </div>
                             <div class="col-md-5 fill">
                                 <label for="fill">Möchtest du deine benachbarten Pixel mit den angeklickten Pixel im Bild färben?</label>
-                                <input type="checkbox" id="fill" name="fill" onchange="changeTool()"/>
+                                <input type="checkbox" id="fill" name="fill"
+                                    onchange="changeTool()"/>
                             </div>
                         </div>
                         <div id="modal-reset" hidden>
@@ -65,17 +67,17 @@
                                 <h3>Möchtest du wirklich alle Pixel zurücksetzen?</h3>
                                 <p>Alle gefärbten Pixeln werden dabei zurückgesetzt.</p>
                                 <div class="buttons">
-                                    <button type="button" class="reset-button" onclick="triggerResetButtonFromModal()">
-                                        Zurücksetzen
-                                    </button>
-                                    <button type="button" class="cancel-button" onclick="cancelModalReset()">Abbrechen
-                                    </button>
+                                    <button type="button"  
+                                        class="reset-button">Zurücksetzen</button>
+                                    <button type="button"  
+                                        class="cancel-button">Abbrechen</button>
                                 </div>
                             </div>
                         </div>
                         <div class="reset">
                             <label for="reset">Ich möchte alle Pixel zurücksetzen</label>
-                            <button type="button" id="reset" name="reset" onclick="triggerModalReset()">Zurücksetzen</button>
+                            <button type="button" id="reset" name="reset"
+                                onclick="triggerModalReset()">Zurücksetzen</button>
                         </div>
                     </section>
                     <section id="create-picture">
@@ -90,18 +92,18 @@
                         <div id="download" class="download">
                             <div class="col-md-3 file-name">
                                 <label for="file-name">Gebe den Dateinamen für dein Bild ein</label>
-                                <input type="text" id="file-name" name="file-name" required/>
+                                <input type="text" id="file-name" name="file-name"
+                                    />
                             </div>
                             <div class="col-md-3 file-type">
                                 <label for="file-type">Welcher Dateityp soll verwendet werden?</label>
-                                <select id="file-type" name="file-type">
-                                    <script>generateFileTypeOptions();</script>
+                                <select id="file-type" name="file-type" >
+                                        <script>generateFileTypeOptions();</script>
                                 </select>
                             </div>
                             <div class="col-md-4 col-lg-3 submit">
-                                <button type="submit">
-                                    Bild herunterladen
-                                </button>
+                                <button type="submit"  
+                                    >Bild herunterladen</button>
                             </div>
                         </div>
                     </section>                </form>

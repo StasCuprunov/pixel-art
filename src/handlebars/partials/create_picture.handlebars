@@ -9,19 +9,20 @@
     </div>
     <div id="download" class="download">
         <div class="col-md-3 file-name">
-            <label for="file-name">{{createPicture.download.fileName.label}}</label>
-            <input type="text" id="file-name" name="file-name" required/>
+            {{> label labelText=createPicture.download.fileName.label for="file-name"}}
+
+            {{> input type="text" id="file-name" name="file-name"}}
+
         </div>
         <div class="col-md-3 file-type">
-            <label for="file-type">{{createPicture.download.fileType.label}}</label>
-            <select id="file-type" name="file-type">
-                <script>generateFileTypeOptions();</script>
-            </select>
+            {{> label labelText=createPicture.download.fileType.label for="file-type"}}
+
+            {{> select id="file-type" name="file-type" script="generateFileTypeOptions()"}}
+
         </div>
         <div class="col-md-4 col-lg-3 submit">
-            <button type="submit">
-                {{createPicture.download.submitText}}
-            </button>
+            {{> button buttonText=createPicture.download.submitText type="submit"}}
+
         </div>
     </div>
 </section>
