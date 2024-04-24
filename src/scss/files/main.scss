@@ -1,11 +1,16 @@
-@import "mixins";
-@import "tags";
-@import "breakpoints";
+@import "abstracts/globals/breakpoints";
+@import "abstracts/globals/colors";
+@import "abstracts/globals/variables";
+@import "abstracts/globals/functions";
+@import "abstracts/globals/tags";
+@import "abstracts/globals/mixins";
+@import "abstracts/globals/placeholders";
 
 body {
-  font-family: "Trebuchet MS", sans-serif;
   @include same-font-size-and-line-height($default-font-size);
-  background-color: $beige;
+  font-family: "Trebuchet MS", sans-serif;
+  color: $font-color;
+  background-color: $website-background-color;
 }
 
 section {
@@ -38,19 +43,19 @@ label {
 }
 
 select, #{$input-checkbox}, #{$input-color}, #{$input-text} {
-  @include input-style();
+  @extend %input-style;
 }
 
 #{$input-checkbox} {
-  @include deactivate-default-styles();
-  @include default-transition();
+  @extend %deactivate-default-styles;
+  @extend %default-transition;
   display: flex;
   justify-content: center;
   align-items: center;
 
   &:checked {
-    @include default-transition();
-    background-color: $red;
+    @extend %default-transition;
+    background-color: $danger-color;
   }
 }
 
@@ -59,17 +64,17 @@ select, #{$input-checkbox}, #{$input-color}, #{$input-text} {
 }
 
 #{$input-range} {
-  @include deactivate-default-styles();
+  @extend %deactivate-default-styles;
   @include default-border-radius();
   align-self: center;
   height: 5px;
   width: 40%;
-  background-color: $light-beige;
+  background-color: $input-background-color;
   cursor: pointer;
 
   &::-webkit-slider-thumb {
-    @include deactivate-webkit-appearance();
-    background-color: $beige;
+    @extend %deactivate-webkit-appearance;
+    background-color: $website-background-color;
     height: $default-font-size;
     width: $default-font-size;
     border-radius: 50%;
@@ -98,30 +103,30 @@ select, #{$input-checkbox}, #{$input-color}, #{$input-text} {
 }
 
 .modal-reset {
-  $margin-size: 100px;
   @include default-border-radius();
-  background-color: $light-beige;
+  @extend %default-container-padding;
+  $margin-size: 100px;
+  background-color: $input-background-color;
   margin: $margin-size $margin-size 0 $margin-size;
-  @include default-container-padding();
 
   p {
     margin-bottom: 10px;
   }
 
   button {
-    @include input-style();
-    @include default-transition();
-    @include default-button-padding();
+    @extend %input-style;
+    @extend %default-transition;
+    @extend %default-button-padding;
 
     &:hover {
-      @include default-transition();
+      @extend %default-transition;
     }
   }
 
   .reset-button:hover {
-    background-color: $red;
-    border-color: $red;
-    color: $light-beige;
+    background-color: $danger-color;
+    border-color: $danger-color;
+    color: $input-background-color;
   }
 }
 
@@ -148,7 +153,7 @@ select, #{$input-checkbox}, #{$input-color}, #{$input-text} {
 .pixel-color {
 
   input {
-    @include default-transition();
+    @extend %default-transition;
     $height: 25px;
     align-self: center;
     border: none;
@@ -205,7 +210,7 @@ select, #{$input-checkbox}, #{$input-color}, #{$input-text} {
 }
 
 .download > div {
-  @include download-element-background();
+  @extend %download-element-background;
 }
 
 .file-name > input {
@@ -229,9 +234,9 @@ select, #{$input-checkbox}, #{$input-color}, #{$input-text} {
   justify-content: space-between;
 
    > div {
+    @extend %default-container-padding;
     display: flex;
     flex-direction: column;
-    @include default-container-padding();
 
     label {
       margin-bottom: 10px;
@@ -241,7 +246,7 @@ select, #{$input-checkbox}, #{$input-color}, #{$input-text} {
 }
 
 .reset > button, .download > .submit > button {
-  @include button();
+  @extend %button;
 }
 
 .download > .submit > button {
