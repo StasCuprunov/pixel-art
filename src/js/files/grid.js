@@ -33,6 +33,7 @@ function createNewGrid() {
     removeGrid();
     generateGrid();
     adjustPixelSizeInputAfterResetGrid();
+    actualizeKeyGridSizeOld();
     resetKeyIsTriggeredByChangingGridSize();
 }
 

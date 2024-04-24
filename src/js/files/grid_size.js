@@ -3,14 +3,13 @@ function generateGridSizeOptions() {
     createSelect(GRID_SIZE_ID, listOfGridSizes, createInnerHtmlFromGridSizeSelect);
 
     $(document).ready(function () {
-        setLocalStorageGridSizeKey();
+        actualizeKeyGridSizeOld();
     });
 }
 
 function onChangeGridSize() {
     setKeyIsTriggeredByChangingGridSizeTrue();
     triggerModalReset();
-    setLocalStorageGridSizeKey();
 }
 
 function sizeOfGrid() {
@@ -19,12 +18,6 @@ function sizeOfGrid() {
 
 function createInnerHtmlFromGridSizeSelect(size) {
     return size + " x " + size;
-}
-
-function setLocalStorageGridSizeKey() {
-    if (getModalReset().hidden) {
-        actualizeKeyGridSizeOld();
-    }
 }
 
 function setKeyIsTriggeredByChangingGridSizeTrue() {

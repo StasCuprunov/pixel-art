@@ -9,13 +9,12 @@ function triggerModalReset() {
 
 function triggerResetButtonFromModal() {
     resetGrid();
-    setLocalStorageGridSizeKey();
     hideModalReset();
 }
 
 function cancelModalReset() {
-    setGridSizeToOldValue();
     hideModalReset();
+    setGridSizeToOldValue();
 }
 
 function hideModalReset() {
