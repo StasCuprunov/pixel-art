@@ -1,7 +1,7 @@
 function generateGrid() {
     $(document).ready(function () {
-        let grid = getGrid();
         let gridRow;
+        let grid = getGrid();
 
         let indexBorder = getIndexBorder();
         for (let index = 0; index < indexBorder; index++) {
@@ -38,7 +38,6 @@ function createNewGrid() {
 
 function createPixel(index) {
     let pixel = createElementInDocument("div");
-
     let id = generatePixelId(index);
 
     pixel.setAttribute("id", id);
@@ -62,7 +61,7 @@ function colorAllPixelsToDefaultColor() {
     let listOfPixels = getGrid().querySelectorAll(".pixel");
 
     for (let index = 0; index < listOfPixels.length; index++) {
-        listOfPixels[index].style.backgroundColor = DEFAULT_PIXEL_COLOR_HEXADEZIMAL;
+        listOfPixels[index].style.backgroundColor = DEFAULT_PIXEL_COLOR_HEXADECIMAL;
     }
 }
 

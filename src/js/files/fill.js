@@ -81,9 +81,8 @@ function changeColorFromPixel(index, color) {
 }
 
 function setDisableForPixelColor(isDisabled) {
-    getPixelColorWithJQuery().prop("disabled", isDisabled);
-
     let cursorValue, opacityValue;
+    getPixelColorWithJQuery().prop("disabled", isDisabled);
 
     if (isDisabled) {
         cursorValue = "not-allowed";
