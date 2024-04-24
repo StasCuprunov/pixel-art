@@ -1,14 +1,6 @@
 function generateFileTypeOptions() {
     let listOfFileTypes = ["gif", "jpg", "png"];
-
-    let fileTypeContainer = document.getElementById(FILE_TYPE_ID);
-
-    listOfFileTypes.forEach((fileType) => {
-        let option = document.createElement("option");
-        option.setAttribute("value", fileType);
-        option.innerHTML = fileType.toUpperCase();
-        fileTypeContainer.appendChild(option);
-    });
+    createSelect(FILE_TYPE_ID, listOfFileTypes,  createInnerHtmlFromFileTypeSelect);
 }
 
 function submit() {
@@ -16,22 +8,35 @@ function submit() {
     resetDownloadInputs();
 }
 
+function createInnerHtmlFromFileTypeSelect(fileType) {
+    return fileType.toUpperCase();
+}
+
 function makeScreenshotOfPixelPicture() {
-    let fileName = $(jQueryId(FILE_NAME_ID)).val();
-    let fileType = $(jQueryId(FILE_TYPE_ID)).val();
+    let fileName = getFileNameWithJQuery().val();
+    let fileType = getFileTypeWithJQuery().val();
 
-    let fullFileName = fileName + "." + fileType;
-
-    let gridContainer = $(jQueryId(GRID_ID));
     // [0] is necessary
-    html2canvas(gridContainer[0]).then((canvas) => {
+    html2canvas(getGridWithJQuery()[0]).then((canvas) => {
         canvas.toBlob(function (blob) {
-            window.saveAs(blob, fullFileName);
+            window.saveAs(blob, getFullFileName(fileName, fileType));
         });
     });
 }
 
 function resetDownloadInputs() {
-    document.getElementById(FILE_NAME_ID).value = "";
+    getFileName().value = "";
     setSelectToFirstOption(FILE_TYPE_ID);
+}
+
+function getFileNameWithJQuery() {
+    return getElementByIdFromDocumentWithJQuery(FILE_NAME_ID);
+}
+
+function getFileTypeWithJQuery() {
+    return getElementByIdFromDocumentWithJQuery(FILE_TYPE_ID);
+}
+
+function getFileName() {
+    return getElementByIdFromDocument(FILE_NAME_ID);
 }

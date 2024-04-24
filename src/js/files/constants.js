@@ -13,3 +13,6 @@ const PREFIX_PIXEL_ID = "pixel-";
 const GRID_SIZE_OLD_KEY = "gridSizeOld";
 const IS_TRIGGERED_BY_CHANGING_GRID_SIZE_KEY = "isTriggeredByChangingGridSize";
 
+const DEFAULT_PIXEL_COLOR_HEXADEZIMAL = "#ffffff";
+const DEFAULT_PIXEL_COLOR_RGB = "rgb(255, 255, 255)";
+

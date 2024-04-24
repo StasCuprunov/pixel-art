@@ -1,17 +1,10 @@
 function changeTool() {
-    let isDisabled;
     let onClickValue;
-    let isFillToolActive = document.getElementById(FILL_ID).checked;
-
-    if (isFillToolActive) {
-        isDisabled = true;
-    }
-    else {
-        isDisabled = false;
-    }
-    setDisableForPixelColor(isDisabled);
-
     let indexBorder = getIndexBorder();
+    let isFillToolActive = getFill().checked;
+
+    setDisableForPixelColor(isFillToolActive);
+
     for (let index = 0; index < indexBorder; index++) {
         let id = generatePixelId(index);
 
@@ -21,12 +14,12 @@ function changeTool() {
         else {
             onClickValue = onClickValueColorPixel(id);
         }
-        document.getElementById(id).onclick = new Function(onClickValue);
+        getElementByIdFromDocument(id).onclick = new Function(onClickValue);
     }
 }
 
 function fillAdjacentPixels(id) {
-    let fillColor = document.getElementById(id).style.backgroundColor;
+    let fillColor = getElementByIdFromDocument(id).style.backgroundColor;
 
     let indexFillPixel = Number(id.replace(PREFIX_PIXEL_ID, ""));
 
@@ -84,11 +77,11 @@ function fillAdjacentPixelIfFillPixelIsNotLastRow(indexFillPixel, fillColor) {
 }
 
 function changeColorFromPixel(index, color) {
-    document.getElementById(generatePixelId(index)).style.backgroundColor = color;
+    getPixel(index).style.backgroundColor = color;
 }
 
 function setDisableForPixelColor(isDisabled) {
-    $(jQueryId(PIXEL_COLOR_ID)).prop("disabled", isDisabled);
+    getPixelColorWithJQuery().prop("disabled", isDisabled);
 
     let cursorValue, opacityValue;
 
@@ -101,8 +94,8 @@ function setDisableForPixelColor(isDisabled) {
         opacityValue = 1;
     }
 
-    document.getElementById(PIXEL_COLOR_ID).style.cursor = cursorValue;
-    document.getElementById(PIXEL_COLOR_ID).style.opacity = opacityValue;
+    getPixelColor().style.cursor = cursorValue;
+    getPixelColor().style.opacity = opacityValue;
 }
 
 function whichColumnIsIndex(index) {
@@ -159,4 +152,16 @@ function indexBottomRightFromPixel(index) {
 
 function indexBottomLeftFromPixel(index) {
     return indexLeftFromPixel(indexBottomFromPixel(index));
+}
+
+function getFill() {
+    return getElementByIdFromDocument(FILL_ID);
+}
+
+function getPixelColor() {
+    return  getElementByIdFromDocument(PIXEL_COLOR_ID);
+}
+
+function getPixelColorWithJQuery() {
+    return getElementByIdFromDocumentWithJQuery(PIXEL_COLOR_ID);
 }

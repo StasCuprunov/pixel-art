@@ -1,6 +1,6 @@
 function triggerModalReset() {
     if (isMinimumOnePixelColored()) {
-        document.getElementById(MODAL_RESET_ID).hidden = false;
+        getModalReset().hidden = false;
     }
     else {
         resetGrid();
@@ -14,22 +14,31 @@ function triggerResetButtonFromModal() {
 }
 
 function cancelModalReset() {
-    document.getElementById(GRID_SIZE_ID).value = localStorage.getItem(GRID_SIZE_OLD_KEY);
+    setGridSizeToOldValue();
     hideModalReset();
 }
 
 function hideModalReset() {
-    document.getElementById(MODAL_RESET_ID).hidden = true;
+    getModalReset().hidden = true;
 }
 
 function isMinimumOnePixelColored() {
-    let listOfPixels = document.getElementById(GRID_ID).querySelectorAll(".pixel");
+    let listOfPixels = getGrid().querySelectorAll(".pixel");
+    let listOfPixelsLength = listOfPixels.length;
 
-    for (let index = 0; index < listOfPixels.length; index++) {
+    for (let index = 0; index < listOfPixelsLength; index++) {
         let backgroundColor = listOfPixels[index].style.backgroundColor;
-        if (backgroundColor !== "" && backgroundColor !== "rgb(255, 255, 255)") {
+        if ((backgroundColor !== "") && (backgroundColor !== DEFAULT_PIXEL_COLOR_RGB)) {
             return true;
         }
     }
     return false;
+}
+
+function setGridSizeToOldValue() {
+    getGridSize().value = getItemFromLocalStorage(GRID_SIZE_OLD_KEY);
+}
+
+function getModalReset() {
+    return getElementByIdFromDocument(MODAL_RESET_ID);
 }

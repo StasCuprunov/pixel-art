@@ -1,25 +1,17 @@
 function generateGrid() {
     $(document).ready(function () {
-        let grid = document.getElementById(GRID_ID);
-        let pixelLength = calculateDefaultPixelLength();
+        let grid = getGrid();
         let gridRow;
 
         let indexBorder = getIndexBorder();
         for (let index = 0; index < indexBorder; index++) {
-            let id = generatePixelId(index);
-
-            let isFirstRow = isPixelFirstRow(index);
-            let isLastRow = isPixelLastRow(index);
-            let isLastColumn = isPixelLastColumn(index);
-
-            if (isFirstRow) {
-                gridRow = document.createElement("div");
+            if (isPixelFirstRow(index)) {
+                gridRow = createElementInDocument("div");
             }
 
-            let pixel= createPixel(id, pixelLength, isLastRow, isLastColumn);
-            gridRow.appendChild(pixel);
+            gridRow.appendChild(createPixel(index));
 
-            if (isLastRow) {
+            if (isPixelLastRow(index)) {
                 grid.appendChild(gridRow);
             }
         }
@@ -27,44 +19,38 @@ function generateGrid() {
 }
 
 function resetGrid() {
-    document.getElementById(FILL_ID).checked = false;
-    setDisableForPixelColor(false);
+    resetTools();
 
-    if (localStorage.getItem(IS_TRIGGERED_BY_CHANGING_GRID_SIZE_KEY) === "true") {
-        removeGrid();
-        generateGrid();
-        adjustPixelSizeInputAfterResetGrid();
-        localStorage.setItem(IS_TRIGGERED_BY_CHANGING_GRID_SIZE_KEY, "");
+    if (isTriggeredByChangingGridSize()) {
+        createNewGrid();
     }
     else {
         colorAllPixelsToDefaultColor();
     }
 }
 
-function createPixel(id, pixelLength, isLastRow, isLastColumn) {
-    let pixel= document.createElement("div");
+function createNewGrid() {
+    removeGrid();
+    generateGrid();
+    adjustPixelSizeInputAfterResetGrid();
+    resetKeyIsTriggeredByChangingGridSize();
+}
+
+function createPixel(index) {
+    let pixel = createElementInDocument("div");
+
+    let id = generatePixelId(index);
+
     pixel.setAttribute("id", id);
-
-    let classValue = "pixel";
-    if (isLastRow) {
-        classValue = addClassAsString(classValue, "last-row");
-    }
-    if (isLastColumn) {
-        classValue = addClassAsString(classValue, "last-column");
-    }
-
-    pixel.setAttribute("class", classValue);
-    let numberOfPixelsAsCSS = numberOfPixelsAsString(pixelLength);
-    pixel.style.height = numberOfPixelsAsCSS;
-    pixel.style.width = numberOfPixelsAsCSS;
-    pixel.setAttribute("onclick",  onClickValueColorPixel(id));
+    pixel.setAttribute("class", createClassValueFromPixel(index));
+    setPixelSize(pixel, calculateDefaultPixelLength());
+    pixel.setAttribute("onclick", onClickValueColorPixel(id));
 
     return pixel;
 }
 
 function removeGrid() {
-    let gridContainer = document.getElementById(GRID_ID);
-    gridContainer.textContent = '';
+    getGrid().textContent = '';
 }
 
 function adjustPixelSizeInputAfterResetGrid() {
@@ -73,18 +59,46 @@ function adjustPixelSizeInputAfterResetGrid() {
 }
 
 function colorAllPixelsToDefaultColor() {
-    let listOfPixels = document.getElementById(GRID_ID).querySelectorAll(".pixel");
+    let listOfPixels = getGrid().querySelectorAll(".pixel");
 
     for (let index = 0; index < listOfPixels.length; index++) {
-        listOfPixels[index].style.backgroundColor = "#ffffff";
+        listOfPixels[index].style.backgroundColor = DEFAULT_PIXEL_COLOR_HEXADEZIMAL;
     }
 }
 
-function colorPixel(id) {
-    let color = document.getElementById(PIXEL_COLOR_ID).value;
+function colorPixel(idFromPixel) {
+    let pixel = getElementByIdFromDocument(idFromPixel);
+    pixel.style.backgroundColor = getPixelColor().value;
+}
 
-    let pixelButton = document.getElementById(id);
-    pixelButton.style.backgroundColor = color;
+function createClassValueFromPixel(index) {
+    let classValue = "pixel";
+    if (isPixelLastRow(index)) {
+        classValue = addClassAsString(classValue, "last-row");
+    }
+    if (isPixelLastColumn(index)) {
+        classValue = addClassAsString(classValue, "last-column");
+    }
+    return classValue;
+}
+
+function setPixelSize(pixel, pixelLength) {
+    let lengthAsString = numberOfPixelsAsString(pixelLength);
+    pixel.style.height = lengthAsString;
+    pixel.style.width = lengthAsString;
+}
+
+function resetTools() {
+    getFill().checked = false;
+    setDisableForPixelColor(false);
+}
+
+function isTriggeredByChangingGridSize() {
+    return getItemFromLocalStorage(IS_TRIGGERED_BY_CHANGING_GRID_SIZE_KEY) === "true";
+}
+
+function resetKeyIsTriggeredByChangingGridSize() {
+    setItemFromLocalStorage(IS_TRIGGERED_BY_CHANGING_GRID_SIZE_KEY, "");
 }
 
 function calculateDefaultPixelLength() {
@@ -92,16 +106,21 @@ function calculateDefaultPixelLength() {
 }
 
 function isPixelLastRow(index) {
-    let lastRow = sizeOfGrid() - 1;
-    return whichRowIsIndex(index) === lastRow;
+    return whichRowIsIndex(index) === lastRowNumber();
 }
 
 function isPixelFirstRow(index) {
-    let firstRow = 0;
-    return whichRowIsIndex(index) === firstRow;
+    return whichRowIsIndex(index) === firstRowNumber();
 }
 
 function isPixelLastColumn(index) {
-    let lastColumn = sizeOfGrid() - 1;
-    return whichColumnIsIndex(index) === lastColumn;
+    return whichColumnIsIndex(index) === lastColumnNumber();
+}
+
+function getGrid() {
+    return getElementByIdFromDocument(GRID_ID);
+}
+
+function getGridWithJQuery() {
+    return getElementByIdFromDocumentWithJQuery(GRID_ID);
 }
