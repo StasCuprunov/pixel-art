@@ -20,6 +20,7 @@ function cancelModalReset() {
 
 function hideModalReset() {
     getModalReset().hidden = true;
+    resetKeyIsTriggeredByChangingGridSize();
 }
 
 function isMinimumOnePixelColored() {

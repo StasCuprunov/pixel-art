@@ -28,7 +28,7 @@ function setLocalStorageGridSizeKey() {
 }
 
 function setKeyIsTriggeredByChangingGridSizeTrue() {
-    setItemFromLocalStorage(IS_TRIGGERED_BY_CHANGING_GRID_SIZE_KEY, true);
+    setItemFromLocalStorage(IS_TRIGGERED_BY_CHANGING_GRID_SIZE_KEY, "true");
 }
 
 function actualizeKeyGridSizeOld() {
