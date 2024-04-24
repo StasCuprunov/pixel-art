@@ -9,8 +9,8 @@ let introduction = {
 
 let tips = {
     "title": "Tipps",
-    "paragraph": "Falls die Pixel zu klein oder zu groß sind, dann kannst in deinem Browser hinein- bzw. hinauszoomen " +
-        "und anschließend alle Pixel zurücksetzen."
+    "paragraph": "Das erstellte Bild ist genauso groß wie auf dem Bildschirm, dass heißt, dass man nach dem Download "
+    + "noch einmal überprüfen sollte, ob das erstellte Bild von der Größe passt."
 }
 
 let tools = {

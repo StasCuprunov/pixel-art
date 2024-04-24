@@ -255,6 +255,7 @@ select, #{$input-checkbox}, #{$input-color}, #{$input-text} {
 
 .download > .submit > button:after {
   @include add-font-awesome-icon-solid-as-content($fa-var-file-arrow-down);
+  margin-left: 5px;
 }
 
 .reset > button:after, .modal-reset > .reset-button:after {
@@ -362,10 +363,6 @@ select, #{$input-checkbox}, #{$input-color}, #{$input-text} {
 
   .reset > button, .download > .submit > button {
     @include button-small-device();
-
-    &:after {
-      margin-left: 5px;
-    }
   }
 }
 
