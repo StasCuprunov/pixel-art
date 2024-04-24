@@ -25,7 +25,7 @@ function resetGrid() {
         createNewGrid();
     }
     else {
-        colorAllPixelsToDefaultColor();
+        setGridToDefault();
     }
 }
 
@@ -58,11 +58,12 @@ function adjustPixelSizeInputAfterResetGrid() {
     setDefaultValueFromAdjustPixelSize();
 }
 
-function colorAllPixelsToDefaultColor() {
+function setGridToDefault() {
     let listOfPixels = getGrid().querySelectorAll(".pixel");
 
     for (let index = 0; index < listOfPixels.length; index++) {
         listOfPixels[index].style.backgroundColor = DEFAULT_PIXEL_COLOR_HEXADECIMAL;
+        listOfPixels[index].onclick = new Function(onClickValueColorPixel(generatePixelId(index)));
     }
 }
 
