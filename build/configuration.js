@@ -15,3 +15,11 @@ let minimizingJsConfig = {
 };
 
 exports.minimizingJsConfig = minimizingJsConfig;
+
+let minimizingCssConfig = {
+    srcDirectories: "../src/scss/files/*.scss",
+    minimizedFileName: "bundle.css",
+    destDirectory: "../src/scss"
+}
+
+exports.minimizingCssConfig = minimizingCssConfig;
