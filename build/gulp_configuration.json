@@ -13,7 +13,7 @@
     "destDirectory": "../public/js"
   },
   "minimizingCssConfig": {
-    "srcDirectories": "../src/scss/files/*.scss",
+    "srcDirectories": "../src/scss/*.scss",
     "minimizedFileName": "bundle-min.css",
     "destDirectory": "../public/css"
   }
