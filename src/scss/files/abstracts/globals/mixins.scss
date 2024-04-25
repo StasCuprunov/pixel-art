@@ -45,6 +45,17 @@
   padding: 5px;
 }
 
+@mixin range-thumb-style() {
+  background-color: $website-background-color;
+  height: $default-font-size;
+  width: $default-font-size;
+  border-radius: 50%;
+
+  &:hover {
+    opacity: 0.95;
+  }
+}
+
 @mixin tools-element-background() {
   @include element-background($tools-background-color);
 }

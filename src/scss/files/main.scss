@@ -74,14 +74,12 @@ select, #{$input-checkbox}, #{$input-color}, #{$input-text} {
 
   &::-webkit-slider-thumb {
     @extend %deactivate-webkit-appearance;
-    background-color: $website-background-color;
-    height: $default-font-size;
-    width: $default-font-size;
-    border-radius: 50%;
+    @include range-thumb-style();
+  }
 
-    &:hover {
-      opacity: 0.95;
-    }
+  &::-moz-range-thumb {
+    @include range-thumb-style();
+    border: 0;
   }
 }
 
@@ -293,6 +291,10 @@ select, #{$input-checkbox}, #{$input-color}, #{$input-text} {
     height: 2px;
 
     &::-webkit-slider-thumb {
+      height: $default-font-size-medium-device;
+      width: $default-font-size-medium-device;
+    }
+    &::-moz-range-thumb {
       height: $default-font-size-medium-device;
       width: $default-font-size-medium-device;
     }
