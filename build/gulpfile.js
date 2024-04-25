@@ -1,6 +1,4 @@
-let createHtmlConfig = require("./configuration").createHtmlConfig;
-let minimizingJsConfig = require("./configuration").minimizingJsConfig;
-let minimizingCssConfig = require("./configuration").minimizingCssConfig;
+let configuration = require("./configuration.json");
 let findAllHandleBarsDirectories = require("./find_sub_directories").findAllHandleBarsDirectories;
 
 const gulp= require("gulp");
@@ -16,6 +14,8 @@ const GULP_TASK_MINIMIZING_JS = "minimizing-js";
 const GULP_TASK_MINIMIZING_CSS = "minimizing-css";
 
 gulp.task(GULP_TASK_CREATE_HTML, async function() {
+    let createHtmlConfig = configuration.gulp.createHtmlConfig;
+
     let options = {
         batch: await findAllHandleBarsDirectories(),
     };
@@ -29,6 +29,7 @@ gulp.task(GULP_TASK_CREATE_HTML, async function() {
 });
 
 gulp.task(GULP_TASK_MINIMIZING_JS, function () {
+    let minimizingJsConfig = configuration.gulp.minimizingJsConfig;
     return gulp.src(minimizingJsConfig.srcDirectories)
         .pipe(concat(minimizingJsConfig.minimizedFileName))
         .pipe(minify())
@@ -36,6 +37,7 @@ gulp.task(GULP_TASK_MINIMIZING_JS, function () {
 });
 
 gulp.task(GULP_TASK_MINIMIZING_CSS, function () {
+    let minimizingCssConfig = configuration.gulp.minimizingCssConfig;
     return gulp.src(minimizingCssConfig.srcDirectories)
         .pipe(sass().on("error", sass.logError))
         .pipe(concat(minimizingCssConfig.minimizedFileName))
