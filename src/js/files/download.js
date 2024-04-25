@@ -19,9 +19,14 @@ function makeScreenshotOfPixelPicture() {
     // [0] is necessary
     html2canvas(getGridWithJQuery()[0]).then((canvas) => {
         canvas.toBlob(function (blob) {
-            window.saveAs(blob, getFullFileName(fileName, fileType));
+            blob = setBlobToPicture(blob, fileType);
+            saveAs(blob, getFullFileName(fileName, fileType));
         });
     });
+}
+
+function setBlobToPicture(blob, fileType) {
+    return blob.slice(0, blob.size, "image/" + fileType);
 }
 
 function resetDownloadInputs() {
