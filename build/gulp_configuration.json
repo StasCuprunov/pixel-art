@@ -8,7 +8,7 @@
   },
 
   "minimizingJsConfig": {
-    "srcDirectories": ["../src/js/files/*js"],
+    "srcDirectories": ["../src/js/*js"],
     "minimizedFileName": "bundle.js",
     "destDirectory": "../public/js"
   },
