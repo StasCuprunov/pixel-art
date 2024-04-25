@@ -1,10 +1,7 @@
 function generateGridSizeOptions() {
     let listOfGridSizes = [8, 12, 16, 32];
     createSelect(GRID_SIZE_ID, listOfGridSizes, createInnerHtmlFromGridSizeSelect);
-
-    $(document).ready(function () {
-        actualizeKeyGridSizeOld();
-    });
+    actualizeKeyGridSizeOld();
 }
 
 function onChangeGridSize() {
