@@ -2,6 +2,7 @@ function generateGrid() {
     $(document).ready(function () {
         let gridRow;
         let grid = getGrid();
+        let pixelLength = calculateDefaultPixelLength();
 
         let indexBorder = getIndexBorder();
         for (let index = 0; index < indexBorder; index++) {
@@ -9,7 +10,7 @@ function generateGrid() {
                 gridRow = createElementInDocument("div");
             }
 
-            gridRow.appendChild(createPixel(index));
+            gridRow.appendChild(createPixel(index, pixelLength));
 
             if (isPixelLastRow(index)) {
                 grid.appendChild(gridRow);
@@ -37,13 +38,13 @@ function createNewGrid() {
     resetKeyIsTriggeredByChangingGridSize();
 }
 
-function createPixel(index) {
+function createPixel(index, pixelLength) {
     let pixel = createElementInDocument("div");
     let id = generatePixelId(index);
 
     pixel.setAttribute("id", id);
     pixel.setAttribute("class", createClassValueFromPixel(index));
-    setPixelSize(pixel, calculateDefaultPixelLength());
+    setPixelSize(pixel, pixelLength);
     pixel.setAttribute("onclick", onClickValueColorPixel(id));
 
     return pixel;
