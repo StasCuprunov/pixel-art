@@ -159,13 +159,12 @@ select, #{$input-checkbox}, #{$input-color}, #{$input-text} {
     height: 25px;
     width: calc(2 * $height);
 
-    &::-webkit-color-swatch-wrapper {
-      padding: 0;
+    &::-webkit-color-swatch {
+      @include input-color-swatch();
     }
 
-    &::-webkit-color-swatch {
-      @include default-border-radius();
-      border: $default-border;
+    &::-moz-color-swatch {
+      @include input-color-swatch();
     }
   }
 }

@@ -56,6 +56,11 @@
   }
 }
 
+@mixin input-color-swatch() {
+  @include default-border-radius();
+  border: $default-border;
+}
+
 @mixin tools-element-background() {
   @include element-background($tools-background-color);
 }
