@@ -28,11 +28,17 @@ gulp.task(GULP_TASK_CREATE_HTML, async function() {
         .pipe(gulp.dest(createHtmlConfig.srcPath));
 });
 
-gulp.task(GULP_TASK_MINIMIZING_JS, function () {
+gulp.task(GULP_TASK_MINIMIZING_JS, async function () {
     let minimizingJsConfig = configuration.minimizingJsConfig;
-    return gulp.src(minimizingJsConfig.srcDirectories)
-        .pipe(concat(minimizingJsConfig.minimizedFileName))
-        .pipe(minify())
+
+    gulp.src(minimizingJsConfig.srcDirectories)
+        .pipe(concat(minimizingJsConfig.fileName))
+        .pipe(await minify({
+            ext: {
+                min: minimizingJsConfig.fileEnd
+            },
+            noSource: true
+        }))
         .pipe(gulp.dest(minimizingJsConfig.destDirectory));
 });
 

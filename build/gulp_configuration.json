@@ -9,7 +9,8 @@
 
   "minimizingJsConfig": {
     "srcDirectories": ["../src/js/*js"],
-    "minimizedFileName": "bundle.js",
+    "fileName": "bundle.js",
+    "fileEnd": "-min.js",
     "destDirectory": "../public/js"
   },
   "minimizingCssConfig": {
