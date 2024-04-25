@@ -1,6 +1,6 @@
 let {readdir} = require("node:fs/promises");
-let configuration = require("./configuration.json");
-let createHtmlConfig = configuration.gulp.createHtmlConfig;
+let configuration = require("./gulp_configuration.json");
+let createHtmlConfig = configuration.createHtmlConfig;
 
 function findAllHandleBarsDirectories() {
     return findAllSubDirectories(createHtmlConfig.srcDirectory);
