@@ -1,0 +1,45 @@
+%deactivate-default-styles {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+%deactivate-webkit-appearance {
+  -webkit-appearance: none;
+}
+
+%deactivate-moz-appearance {
+  -moz-appearance: none;
+}
+
+%download-element-background {
+  @include element-background($download-background-color);
+}
+
+%input-style {
+  @include default-border-radius();
+  background-color: $input-background-color;
+  cursor: pointer;
+  border: $default-border;
+
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
+%button {
+  @extend %input-style;
+  padding: 10px;
+}
+
+%default-transition {
+  transition-duration: 0.4s;
+}
+
+%default-button-padding {
+  padding: 10px;
+}
+
+%default-container-padding {
+  padding: 10px;
+}

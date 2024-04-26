@@ -1,0 +1,70 @@
+@import "../../../../node_modules/@fortawesome/fontawesome-free/scss/fontawesome";
+@import "../../../../node_modules/@fortawesome/fontawesome-free/scss/solid";
+
+@mixin same-font-size-and-line-height($size) {
+  font-size: $size;
+  line-height: $size;
+}
+
+@mixin same-height-and-width($size) {
+  height: $size;
+  width: $size;
+}
+
+@mixin same-margin-top-and-bottom($size) {
+  margin-top: $size;
+  margin-bottom: $size;
+}
+
+@mixin element-background($color) {
+  @include default-border-radius();
+  background-color: $color;
+}
+
+@mixin add-font-awesome-icon-solid-as-content($icon) {
+  @extend %fa-icon;
+  @extend .fa-solid;
+  content: fa-content($icon);
+}
+
+@mixin default-container-padding-medium-device() {
+  padding: 5px;
+}
+
+@mixin default-button-padding-medium-device() {
+  padding: 5px;
+}
+
+@mixin default-label-margin-bottom-medium-device() {
+  margin-bottom: 5px;
+}
+
+@mixin button-small-device() {
+  @extend %input-style;
+  height: 30px;
+  padding: 5px;
+}
+
+@mixin range-thumb-style() {
+  background-color: $website-background-color;
+  height: $default-font-size;
+  width: $default-font-size;
+  border-radius: 50%;
+
+  &:hover {
+    opacity: 0.95;
+  }
+}
+
+@mixin input-color-swatch() {
+  @include default-border-radius();
+  border: $default-border;
+}
+
+@mixin tools-element-background() {
+  @include element-background($tools-background-color);
+}
+
+@mixin default-border-radius() {
+  border-radius: 5px;
+}
