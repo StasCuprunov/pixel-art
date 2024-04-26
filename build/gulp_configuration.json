@@ -1,0 +1,21 @@
+{
+  "createHtmlConfig": {
+    "srcDirectory": "../src/handlebars",
+    "templateDataPath": "../src/data/templateData.js",
+    "indexHandlebarsPath": "../src/handlebars/index.handlebars",
+    "htmlFileName": "index.html",
+    "srcPath": "../public/html"
+  },
+
+  "minimizingJsConfig": {
+    "srcDirectories": ["../src/js/*js"],
+    "fileName": "bundle.js",
+    "fileEnd": "-min.js",
+    "destDirectory": "../public/js"
+  },
+  "minimizingCssConfig": {
+    "srcDirectories": "../src/scss/*.scss",
+    "minimizedFileName": "bundle-min.css",
+    "destDirectory": "../public/css"
+  }
+}

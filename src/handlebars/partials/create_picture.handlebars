@@ -1,0 +1,28 @@
+<section id="create-picture">
+    <div id="picture">
+        <h2>{{createPicture.title}}</h2>
+        <div id="grid-container" class="grid-container">
+            <div id="grid" class="grid">
+                <script>generateGrid();</script>
+            </div>
+        </div>
+    </div>
+    <div id="download" class="download">
+        <div class="col-md-3 file-name">
+            {{> label labelText=createPicture.download.fileName.label for="file-name"}}
+
+            {{> input type="text" id="file-name" name="file-name" required=true}}
+
+        </div>
+        <div class="col-md-3 file-type">
+            {{> label labelText=createPicture.download.fileType.label for="file-type"}}
+
+            {{> select id="file-type" name="file-type" script="generateFileTypeOptions()"}}
+
+        </div>
+        <div class="col-md-4 col-lg-3 submit">
+            {{> button buttonText=createPicture.download.submitText type="submit"}}
+
+        </div>
+    </div>
+</section>

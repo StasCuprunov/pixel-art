@@ -1,0 +1,14 @@
+<div id="modal-reset" hidden>
+    <div class="modal-reset">
+        <h3>{{modalReset.title}}</h3>
+        <p>{{modalReset.paragraph}}</p>
+        <div class="buttons">
+            {{>button buttonText=modalReset.reset.buttonText type="button" class="reset-button"
+                    onClick="triggerResetButtonFromModal()"}}
+
+            {{>button buttonText=modalReset.cancel.buttonText type="button" class="cancel-button"
+                    onClick="cancelModalReset()"}}
+
+        </div>
+    </div>
+</div>

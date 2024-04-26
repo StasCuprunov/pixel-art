@@ -1,0 +1,384 @@
+@import "abstracts/globals/breakpoints";
+@import "abstracts/globals/colors";
+@import "abstracts/globals/variables";
+@import "abstracts/globals/functions";
+@import "abstracts/globals/tags";
+@import "abstracts/globals/mixins";
+@import "abstracts/globals/placeholders";
+
+body {
+  @include same-font-size-and-line-height($default-font-size);
+  font-family: "Trebuchet MS", sans-serif;
+  color: $font-color;
+  background-color: $website-background-color;
+}
+
+section {
+  @include same-margin-top-and-bottom(30px);
+}
+
+h1 {
+  @include same-font-size-and-line-height(60px);
+}
+
+h2 {
+  @include same-font-size-and-line-height(40px);
+}
+
+h3 {
+  @include same-font-size-and-line-height(30px);
+}
+
+h1, h2, h3 {
+  font-weight: 300;
+  margin-bottom: 10px;
+}
+
+p {
+  margin: 0;
+}
+
+label {
+  pointer-events: none;
+}
+
+select, #{$input-checkbox}, #{$input-color}, #{$input-text} {
+  @extend %input-style;
+}
+
+#{$input-checkbox} {
+  @extend %deactivate-default-styles;
+  @extend %default-transition;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &:checked {
+    @extend %default-transition;
+    background-color: $danger-color;
+  }
+}
+
+#{$input-checkbox}:checked:before {
+  @include add-font-awesome-icon-solid-as-content($fa-var-check);
+}
+
+#{$input-range} {
+  @extend %deactivate-default-styles;
+  @include default-border-radius();
+  align-self: center;
+  height: 5px;
+  width: 40%;
+  background-color: $input-background-color;
+  cursor: pointer;
+
+  &::-webkit-slider-thumb {
+    @extend %deactivate-webkit-appearance;
+    @include range-thumb-style();
+  }
+
+  &::-moz-range-thumb {
+    @include range-thumb-style();
+    border: 0;
+  }
+}
+
+#tools > div {
+  margin-bottom: 10px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+#modal-reset {
+  position: fixed;
+  left: 0;
+  top: 0;
+  background-color: $background-color-modal-reset;
+  width: 100%;
+  height: 100%;
+}
+
+.modal-reset {
+  @include default-border-radius();
+  @extend %default-container-padding;
+  $margin-size: 100px;
+  background-color: $input-background-color;
+  margin: $margin-size $margin-size 0 $margin-size;
+
+  p {
+    margin-bottom: 10px;
+  }
+
+  button {
+    @extend %input-style;
+    @extend %default-transition;
+    @extend %default-button-padding;
+
+    &:hover {
+      @extend %default-transition;
+    }
+  }
+
+  .reset-button:hover {
+    background-color: $danger-color;
+    border-color: $danger-color;
+    color: $input-background-color;
+  }
+}
+
+.start-configuration > div, .tools > div, {
+  @include tools-element-background();
+}
+
+.grid-size > select {
+  width: 35%;
+  align-self: center;
+}
+
+.adjust-pixel-size-range {
+  display: flex;
+  justify-content: center;
+
+  input {
+    $margin-size: 10px;
+    margin-right: $margin-size;
+    margin-left: $margin-size;
+  }
+}
+
+.pixel-color {
+
+  input {
+    @extend %default-transition;
+    $height: 25px;
+    align-self: center;
+    border: none;
+    padding: 0;
+    height: 25px;
+    width: calc(2 * $height);
+
+    &::-webkit-color-swatch {
+      @include input-color-swatch();
+    }
+
+    &::-moz-color-swatch {
+      @include input-color-swatch();
+    }
+  }
+}
+
+.pixel-color > label {
+  margin-bottom: 20px;
+}
+
+.fill {
+  align-items: center;
+
+  input {
+    @include same-height-and-width(25px);
+  }
+}
+
+.grid-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+
+.grid {
+  display: flex;
+}
+
+.pixel {
+  background-color: $default-pixel-color;
+  border-top: $default-border;
+  border-left: $default-border;
+  cursor: pointer;
+}
+
+.pixel.last-row {
+  border-bottom: $default-border;
+}
+
+.pixel.last-column {
+  border-right: $default-border;
+}
+
+.download > div {
+  @extend %download-element-background;
+}
+
+.file-name > input {
+  width: 65%;
+}
+
+.file-type > select {
+  width: 40%;
+}
+
+.file-name, .file-type {
+  align-items: center;
+}
+
+.download > .submit {
+  justify-content: center;
+}
+
+.start-configuration, .tools, .download {
+  display: flex;
+  justify-content: space-between;
+
+   > div {
+    @extend %default-container-padding;
+    display: flex;
+    flex-direction: column;
+
+    label {
+      margin-bottom: 10px;
+      text-align: center;
+    }
+  }
+}
+
+.reset > button, .download > .submit > button {
+  @extend %button;
+}
+
+.download > .submit > button {
+  align-self: center;
+}
+
+.download > .submit > button:after {
+  @include add-font-awesome-icon-solid-as-content($fa-var-file-arrow-down);
+  margin-left: 5px;
+}
+
+.reset > button:after, .modal-reset > .reset-button:after {
+  @include add-font-awesome-icon-solid-as-content($fa-var-arrow-rotate-left);
+  margin-left: 5px;
+}
+
+@media only screen and (max-width: $medium-device-width) {
+  body {
+    @include same-font-size-and-line-height($default-font-size-medium-device);
+    text-align: center;
+  }
+
+  section {
+    @include same-margin-top-and-bottom(20px);
+  }
+
+  h1 {
+    @include same-font-size-and-line-height(45px);
+  }
+
+  h2 {
+    @include same-font-size-and-line-height(30px);
+  }
+
+  h3 {
+    @include same-font-size-and-line-height(22px);
+  }
+
+  h1, h2, h3 {
+    margin-bottom: 5px;
+  }
+
+  #{$input-range} {
+    height: 2px;
+
+    &::-webkit-slider-thumb {
+      height: $default-font-size-medium-device;
+      width: $default-font-size-medium-device;
+    }
+    &::-moz-range-thumb {
+      height: $default-font-size-medium-device;
+      width: $default-font-size-medium-device;
+    }
+  }
+
+  .modal-reset {
+    $margin-size: 50px;
+    margin: $margin-size $margin-size 0 $margin-size;
+
+    p {
+      margin-bottom: 5px;
+    }
+
+    button {
+      @include button-small-device();
+      @include default-button-padding-medium-device();
+    }
+  }
+
+  .adjust-pixel-size-range {
+    input {
+      $margin-size: 5px;
+      margin-right: $margin-size;
+      margin-left: $margin-size;
+    }
+  }
+
+  .grid-size, .reset {
+    @include tools-element-background();
+  }
+
+  .reset {
+    display: flex;
+    flex-direction: column;
+
+    label {
+      @include default-label-margin-bottom-medium-device();
+    }
+
+    button {
+      align-self: center;
+    }
+  }
+
+  .grid-container {
+    margin-bottom: 20px;
+  }
+
+  .start-configuration, .tools, .download {
+    flex-direction: column;
+
+    > div {
+      margin-bottom: 10px;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+
+      label {
+        @include default-label-margin-bottom-medium-device();
+      }
+    }
+  }
+
+  .reset, .start-configuration > div, .tools > div, .download > div, .modal-reset {
+    @include default-container-padding-medium-device();
+  }
+
+  .reset > button, .download > .submit > button {
+    @include button-small-device();
+  }
+}
+
+@media only screen and (max-width: $small-device-width) {
+  .modal-reset > .buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    button {
+      margin-bottom: 5px;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+}
