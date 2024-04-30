@@ -27,9 +27,8 @@
 - Programming language -> JavaScript
 - For presentation -> HTML
 - For design -> Sass (SCSS), CSS
-- For configuration -> JSON
 
-### Used frameworks
+### Used frameworks/libraries/toolkits
 
 #### For design
 
